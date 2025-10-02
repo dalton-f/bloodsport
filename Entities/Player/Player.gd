@@ -1,15 +1,15 @@
 extends CharacterBody3D
 
 var speed
-var t_bob = 0.0
 
 const WALK_SPEED = 5.0
 const SPRINT_SPEED = 8.0
 const JUMP_VELOCITY = 4.8
 const SENSITIVITY = 0.004
 
-const BOB_FREQUENCY = 2.4
-const BOB_AMPLITUDE = 0.05
+const HEADBOB_FREQUENCY = 2.4
+const HEADBOB_AMPLITUDE = 0.05
+var headbob_time = 0.0
 
 const BASE_FOV = 75.0
 const FOV_CHANGE = 1.5
@@ -17,7 +17,7 @@ const FOV_CHANGE = 1.5
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-@onready 
+@onready
 var head = $Head
 
 @onready 
@@ -65,8 +65,8 @@ func _physics_process(delta):
 		velocity.z = lerp(velocity.z, direction.z * speed, delta * 3.0)
 	
 	# Head bob
-	t_bob += delta * velocity.length() * float(is_on_floor())
-	camera.transform.origin = _headbob(t_bob)
+	headbob_time += delta * velocity.length() * float(is_on_floor())
+	camera.transform.origin = _headbob(headbob_time)
 	
 	# FOV
 	var velocity_clamped = clamp(velocity.length(), 0.5, SPRINT_SPEED * 2)
@@ -77,6 +77,6 @@ func _physics_process(delta):
 
 func _headbob(time) -> Vector3:
 	var pos = Vector3.ZERO
-	pos.y = sin(time * BOB_FREQUENCY) * BOB_AMPLITUDE
-	pos.x = cos(time * BOB_FREQUENCY / 2) * BOB_AMPLITUDE
+	pos.y = sin(time * HEADBOB_FREQUENCY) * HEADBOB_AMPLITUDE
+	pos.x = cos(time * HEADBOB_FREQUENCY / 2) * HEADBOB_AMPLITUDE
 	return pos
