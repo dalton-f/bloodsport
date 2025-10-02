@@ -9,6 +9,4 @@ weapon_name = "Shotgun"
 weapon_scene = ExtResource("2_qjl5k")
 damage = 20
 fire_rate = 1.5
-pellets = 2
-bullet_spread = 0.25
 metadata/_custom_type_script = "uid://chwcpm42hh1ca"

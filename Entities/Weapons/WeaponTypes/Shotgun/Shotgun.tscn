@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://br60mmc8l83hb"]
+[gd_scene load_steps=13 format=3 uid="uid://br60mmc8l83hb"]
 
 [ext_resource type="PackedScene" uid="uid://c7tomivyk60ls" path="res://Entities/Weapons/WeaponTypes/Shotgun/shotgunasset.glb" id="1_e7j31"]
 [ext_resource type="Shader" uid="uid://cgyxbn7sujqqb" path="res://Assets/Shaders/psx.gdshader" id="2_2tyaa"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://gngka4pmd8tu" path="res://Entities/Weapons/WeaponTypes/Shotgun/shotgunasset_T_BLOOD.png" id="3_polpv"]
 [ext_resource type="Texture2D" uid="uid://dfs5p7snt5h25" path="res://Entities/Weapons/WeaponTypes/Shotgun/shotgunasset_shotgungriptexture.png" id="4_polpv"]
 [ext_resource type="Texture2D" uid="uid://buqyd11awvw0q" path="res://Entities/Weapons/WeaponTypes/Shotgun/shotgunasset_T_SG_BARREL (1).png" id="5_3wai2"]
+[ext_resource type="Texture2D" uid="uid://ds0aoguw6pj1j" path="res://Entities/Weapons/WeaponTypes/Shotgun/T_Metal2.png" id="7_cii77"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3wai2"]
 render_priority = 0
@@ -30,6 +31,7 @@ shader_parameter/resolution = Vector2i(320, 240)
 render_priority = 0
 shader = ExtResource("2_2tyaa")
 shader_parameter/affine_mapping = false
+shader_parameter/albedo = ExtResource("7_cii77")
 shader_parameter/alpha_scissor = 0.7
 shader_parameter/jitter = 0.25
 shader_parameter/resolution = Vector2i(320, 240)

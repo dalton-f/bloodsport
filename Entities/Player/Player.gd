@@ -9,7 +9,7 @@ const JUMP_VELOCITY = 4.8
 const SENSITIVITY = 0.004
 
 const HEADBOB_FREQUENCY = 2
-const HEADBOB_AMPLITUDE = 0.07
+const HEADBOB_AMPLITUDE = 0.04
 var headbob_time = 0.0
 
 const BASE_FOV = 75.0
