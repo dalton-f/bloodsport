@@ -1,0 +1,64 @@
+[gd_scene load_steps=12 format=3 uid="uid://br60mmc8l83hb"]
+
+[ext_resource type="PackedScene" uid="uid://c7tomivyk60ls" path="res://Entities/Weapons/WeaponTypes/Shotgun/shotgunasset.glb" id="1_e7j31"]
+[ext_resource type="Shader" uid="uid://cgyxbn7sujqqb" path="res://Assets/Shaders/psx.gdshader" id="2_2tyaa"]
+[ext_resource type="Script" uid="uid://de8gs3hyajrhk" path="res://Entities/Weapons/RecoilHandler/RecoilHandler.gd" id="2_qudir"]
+[ext_resource type="Curve" uid="uid://cr7cusceupwm0" path="res://Entities/Weapons/RecoilHandler/recoil_curve.tres" id="3_ddnxl"]
+[ext_resource type="Texture2D" uid="uid://gngka4pmd8tu" path="res://Entities/Weapons/WeaponTypes/Shotgun/shotgunasset_T_BLOOD.png" id="3_polpv"]
+[ext_resource type="Texture2D" uid="uid://dfs5p7snt5h25" path="res://Entities/Weapons/WeaponTypes/Shotgun/shotgunasset_shotgungriptexture.png" id="4_polpv"]
+[ext_resource type="Texture2D" uid="uid://buqyd11awvw0q" path="res://Entities/Weapons/WeaponTypes/Shotgun/shotgunasset_T_SG_BARREL (1).png" id="5_3wai2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3wai2"]
+render_priority = 0
+shader = ExtResource("2_2tyaa")
+shader_parameter/affine_mapping = false
+shader_parameter/albedo = ExtResource("3_polpv")
+shader_parameter/alpha_scissor = 0.7
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(320, 240)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qudir"]
+render_priority = 0
+shader = ExtResource("2_2tyaa")
+shader_parameter/affine_mapping = false
+shader_parameter/albedo = ExtResource("4_polpv")
+shader_parameter/alpha_scissor = 0.7
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(320, 240)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cii77"]
+render_priority = 0
+shader = ExtResource("2_2tyaa")
+shader_parameter/affine_mapping = false
+shader_parameter/alpha_scissor = 0.7
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(320, 240)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ddnxl"]
+render_priority = 0
+shader = ExtResource("2_2tyaa")
+shader_parameter/affine_mapping = false
+shader_parameter/albedo = ExtResource("5_3wai2")
+shader_parameter/alpha_scissor = 0.7
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(320, 240)
+
+[node name="Shotgun" node_paths=PackedStringArray("target_object") instance=ExtResource("1_e7j31")]
+script = ExtResource("2_qudir")
+target_object = NodePath(".")
+recoil_rotation_x = ExtResource("3_ddnxl")
+recoil_rotation_z = ExtResource("3_ddnxl")
+recoil_position_z = ExtResource("3_ddnxl")
+recoil_amplitude = Vector3(0.75, 0.6, 1)
+lerp_speed = 5.0
+recoil_speed = 0.75
+
+[node name="SHOTGUN" parent="." index="0"]
+transform = Transform3D(-0.15, 0, 4.3033804e-08, 0, 0.102, 0, -2.2649372e-08, 0, -0.285, 0, 0, 0)
+surface_material_override/0 = SubResource("ShaderMaterial_3wai2")
+surface_material_override/1 = SubResource("ShaderMaterial_qudir")
+surface_material_override/2 = SubResource("ShaderMaterial_cii77")
+surface_material_override/3 = SubResource("ShaderMaterial_ddnxl")
+
+[node name="MuzzlePoint" type="Marker3D" parent="." index="1"]
+transform = Transform3D(0.9793818, 0, 0.20201816, 0, 1, 0, -0.20201816, 0, 0.9793818, -0.20061395, 0.10157597, -1.095154)
