@@ -45,6 +45,8 @@ func damage(amount: int) -> void:
 	current_health = current_health - amount
 	emit_signal("health_changed", current_health)
 	
+	print("Took damage:", amount, "Current health:", current_health)
+	
 	if current_health <= 0:
 		emit_signal("died")
 	

@@ -17,15 +17,12 @@ const FOV_CHANGE = 1.5
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-@onready
-var head = $Head
-
-@onready 
-var camera = $Head/Camera3D
+@onready var head = $Head
+@onready var camera = $Head/Camera3D
+@onready var weapon_manager = $Head/Camera3D/WeaponsManager
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
@@ -72,6 +69,10 @@ func _physics_process(delta):
 	var velocity_clamped = clamp(velocity.length(), 0.5, SPRINT_SPEED * 2)
 	var target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
 	camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
+	
+	# Shooting
+	if Input.is_action_pressed("shoot"):
+		weapon_manager.shoot()
 	
 	move_and_slide()
 

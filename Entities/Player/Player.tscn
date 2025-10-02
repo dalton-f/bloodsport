@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cyfhijj5hleol"]
+[gd_scene load_steps=7 format=3 uid="uid://cyfhijj5hleol"]
 
 [ext_resource type="Script" uid="uid://cbreicnryvtal" path="res://Entities/Player/Player.gd" id="1_e5kic"]
 [ext_resource type="PackedScene" uid="uid://bqu265gwb7udo" path="res://Entities/Components/HealthComponent/HealthComponent.tscn" id="2_ww0jn"]
+[ext_resource type="Resource" uid="uid://ccvkywt6kioot" path="res://Entities/Weapons/WeaponTypes/Pistol/Pistol.tres" id="3_1des2"]
+[ext_resource type="PackedScene" uid="uid://4elhg0akudo3" path="res://Entities/Weapons/WeaponsManager/WeaponsManager.tscn" id="3_vweq0"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_u36tg"]
 
@@ -21,5 +23,9 @@ shape = SubResource("ConvexPolygonShape3D_e5kic")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.77752537, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
+
+[node name="WeaponsManager" parent="Head/Camera3D" instance=ExtResource("3_vweq0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3452071, -0.40005463, -0.8196671)
+weapon_data = ExtResource("3_1des2")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_ww0jn")]
