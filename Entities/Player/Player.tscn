@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cyfhijj5hleol"]
+[gd_scene load_steps=8 format=3 uid="uid://cyfhijj5hleol"]
 
 [ext_resource type="Script" uid="uid://cbreicnryvtal" path="res://Entities/Player/Player.gd" id="1_e5kic"]
 [ext_resource type="PackedScene" uid="uid://bqu265gwb7udo" path="res://Entities/Components/HealthComponent/HealthComponent.tscn" id="2_ww0jn"]
 [ext_resource type="Resource" uid="uid://ccvkywt6kioot" path="res://Entities/Weapons/WeaponTypes/Pistol/Pistol.tres" id="3_1des2"]
 [ext_resource type="PackedScene" uid="uid://4elhg0akudo3" path="res://Entities/Weapons/WeaponsManager/WeaponsManager.tscn" id="3_vweq0"]
+[ext_resource type="Texture2D" uid="uid://bebn7ogyb57ci" path="res://Assets/Textures/crosshair.png" id="5_an6q6"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_u36tg"]
 
@@ -29,3 +30,30 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5606173, -0.40005463, -0.97
 weapon_data = ExtResource("3_1des2")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_ww0jn")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_an6q6")
+expand_mode = 3
