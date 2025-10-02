@@ -1,7 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://jyw067d6b7a1"]
+[gd_scene load_steps=12 format=3 uid="uid://jyw067d6b7a1"]
 
 [ext_resource type="PackedScene" uid="uid://bqu265gwb7udo" path="res://Entities/Components/HealthComponent/HealthComponent.tscn" id="1_1j0jg"]
 [ext_resource type="PackedScene" uid="uid://cyfhijj5hleol" path="res://Entities/Player/Player.tscn" id="1_8rr0o"]
+[ext_resource type="Shader" uid="uid://dfwsqetosfke7" path="res://Entities/World/World.gdshader" id="1_n0y24"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n7sqv"]
+shader = ExtResource("1_n0y24")
+shader_parameter/enabled = true
+shader_parameter/dithering = true
+shader_parameter/colors = 12
+shader_parameter/dither_size = 1
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5iorc"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -26,38 +34,54 @@ data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_n7sqv"]
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
-[node name="World" type="Node3D"]
+[node name="SubViewportContainer" type="SubViewportContainer"]
+material = SubResource("ShaderMaterial_n7sqv")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+stretch = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="World" type="Node3D" parent="SubViewport"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport/World"]
 environment = SubResource("Environment_1j0jg")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport/World"]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
-[node name="Environment" type="Node3D" parent="."]
+[node name="Environment" type="Node3D" parent="SubViewport/World"]
 
-[node name="Ground" type="StaticBody3D" parent="Environment"]
+[node name="Ground" type="StaticBody3D" parent="SubViewport/World/Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2449131, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Ground"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/World/Environment/Ground"]
 transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 0)
 mesh = SubResource("PlaneMesh_5iorc")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Ground"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/World/Environment/Ground"]
 transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_1j0jg")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Environment"]
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewport/World/Environment"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/StaticBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/World/Environment/StaticBody3D"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -7.1296883, 1.0965743, 2)
 mesh = SubResource("BoxMesh_n0y24")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/World/Environment/StaticBody3D"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -7.1296883, 1.0965743, 2)
 shape = SubResource("ConcavePolygonShape3D_n7sqv")
 
-[node name="HealthComponent" parent="Environment/StaticBody3D" instance=ExtResource("1_1j0jg")]
+[node name="HealthComponent" parent="SubViewport/World/Environment/StaticBody3D" instance=ExtResource("1_1j0jg")]
 
-[node name="Player" parent="." instance=ExtResource("1_8rr0o")]
+[node name="Player" parent="SubViewport/World" instance=ExtResource("1_8rr0o")]

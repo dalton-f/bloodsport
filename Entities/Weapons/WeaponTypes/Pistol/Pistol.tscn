@@ -1,8 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://wsevk4hddh2a"]
+[gd_scene load_steps=8 format=3 uid="uid://wsevk4hddh2a"]
 
 [ext_resource type="PackedScene" uid="uid://covvcvwrrscns" path="res://Entities/Weapons/WeaponTypes/Pistol/Pistol.gltf" id="1_y36us"]
 [ext_resource type="Script" uid="uid://de8gs3hyajrhk" path="res://Entities/Weapons/RecoilHandler/RecoilHandler.gd" id="2_purpd"]
 [ext_resource type="Curve" uid="uid://cr7cusceupwm0" path="res://Entities/Weapons/RecoilHandler/recoil_curve.tres" id="3_j06v3"]
+[ext_resource type="Shader" uid="uid://cgyxbn7sujqqb" path="res://Assets/Shaders/psx.gdshader" id="4_vf6cp"]
+[ext_resource type="Texture2D" uid="uid://dhiwp1m0b60wc" path="res://Entities/Weapons/WeaponTypes/Pistol/prototypebits_texture.png" id="5_yv650"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xavaq"]
+render_priority = 0
+shader = ExtResource("4_vf6cp")
+shader_parameter/affine_mapping = false
+shader_parameter/albedo = ExtResource("5_yv650")
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(320, 240)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vf6cp"]
+render_priority = 0
+shader = ExtResource("4_vf6cp")
+shader_parameter/affine_mapping = false
+shader_parameter/albedo = ExtResource("5_yv650")
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(320, 240)
 
 [node name="Pistol" node_paths=PackedStringArray("target_object") instance=ExtResource("1_y36us")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
@@ -13,3 +33,9 @@ recoil_rotation_z = ExtResource("3_j06v3")
 recoil_position_z = ExtResource("3_j06v3")
 recoil_amplitude = Vector3(0.75, 0.4, 0.15)
 lerp_speed = 5.0
+
+[node name="Gun_Pistol" parent="." index="0"]
+material_override = SubResource("ShaderMaterial_xavaq")
+
+[node name="Gun_Pistol_Magazine" parent="Gun_Pistol" index="0"]
+material_override = SubResource("ShaderMaterial_vf6cp")
