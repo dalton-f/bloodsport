@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cbreicnryvtal" path="res://Entities/Player/Player.gd" id="1_e5kic"]
 [ext_resource type="PackedScene" uid="uid://bqu265gwb7udo" path="res://Entities/Components/HealthComponent/HealthComponent.tscn" id="2_ww0jn"]
-[ext_resource type="Resource" uid="uid://ccvkywt6kioot" path="res://Entities/Weapons/WeaponTypes/Pistol/Pistol.tres" id="3_1des2"]
+[ext_resource type="Resource" uid="uid://casypgalqc6fn" path="res://Entities/Weapons/WeaponTypes/Shotgun/Shotgun.tres" id="3_an6q6"]
 [ext_resource type="PackedScene" uid="uid://4elhg0akudo3" path="res://Entities/Weapons/WeaponsManager/WeaponsManager.tscn" id="3_vweq0"]
 [ext_resource type="Texture2D" uid="uid://bebn7ogyb57ci" path="res://Assets/Textures/crosshair.png" id="5_an6q6"]
 
@@ -27,7 +27,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.77752537, 0)
 
 [node name="WeaponsManager" parent="Head/Camera3D" instance=ExtResource("3_vweq0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5606173, -0.40005463, -0.970376)
-weapon_data = ExtResource("3_1des2")
+weapon_data = ExtResource("3_an6q6")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_ww0jn")]
 

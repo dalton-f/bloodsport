@@ -8,6 +8,8 @@ var camera
 var current_weapon: Node3D
 var can_shoot: bool = true
 
+var muzzle_flash = preload("res://Entities/Weapons/MuzzleFlash.tscn")
+
 func _ready():
 	current_weapon = weapon_data.weapon_scene.instantiate()
 	add_child(current_weapon)
@@ -43,8 +45,23 @@ func shoot():
 		if result and result.collider.has_node("HealthComponent"):
 			result.collider.get_node("HealthComponent").damage(weapon_data.damage)
 	
+	_spawn_muzzle_flash()
 	current_weapon.apply_recoil()
 	
 	var cooldown = 1.0 / float(weapon_data.fire_rate)
 	await get_tree().create_timer(cooldown).timeout
 	can_shoot = true
+
+func _spawn_muzzle_flash():
+	var muzzle_point = current_weapon.get_node_or_null("MuzzlePoint")
+	
+	if muzzle_point:
+		var flash = muzzle_flash.instantiate()
+		muzzle_point.add_child(flash)
+		flash.global_transform = muzzle_point.global_transform
+		flash.emitting = true
+		
+		# Auto-remove after animation/short delay
+		await get_tree().create_timer(0.1).timeout
+		if flash and flash.is_inside_tree():
+			flash.queue_free()

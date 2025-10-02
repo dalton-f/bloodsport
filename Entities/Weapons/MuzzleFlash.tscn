@@ -1,0 +1,61 @@
+[gd_scene load_steps=11 format=3 uid="uid://cb6gvsak68v18"]
+
+[ext_resource type="Texture2D" uid="uid://bd2noc77vclj6" path="res://Assets/Textures/muzzle_06.png" id="1_cth5m"]
+
+[sub_resource type="Gradient" id="Gradient_cii77"]
+offsets = PackedFloat32Array(0, 0.55212355, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.55212355, 0.55212355, 0.55212355, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kbg3h"]
+gradient = SubResource("Gradient_cii77")
+
+[sub_resource type="Curve" id="Curve_7t3in"]
+_limits = [0.0, 25.0, 0.0, 1.0]
+_data = [Vector2(0, 25), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveTexture" id="CurveTexture_abvq1"]
+curve = SubResource("Curve_7t3in")
+
+[sub_resource type="Curve" id="Curve_cii77"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveTexture" id="CurveTexture_kbg3h"]
+curve = SubResource("Curve_cii77")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kbg3h"]
+angle_min = -720.0
+angle_max = 720.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_kbg3h")
+color = Color(0.97298807, 0.14320454, 0.3871756, 1)
+color_ramp = SubResource("GradientTexture1D_kbg3h")
+emission_curve = SubResource("CurveTexture_abvq1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7t3in"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1.9415102, 1.9415102, 0, 1)
+albedo_texture = ExtResource("1_cth5m")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+proximity_fade_enabled = true
+proximity_fade_distance = 0.1
+
+[sub_resource type="QuadMesh" id="QuadMesh_7t3in"]
+material = SubResource("StandardMaterial3D_7t3in")
+
+[node name="GPUParticles3D" type="GPUParticles3D"]
+emitting = false
+amount = 1
+lifetime = 0.05
+explosiveness = 1.0
+randomness = 1.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_kbg3h")
+draw_pass_1 = SubResource("QuadMesh_7t3in")
