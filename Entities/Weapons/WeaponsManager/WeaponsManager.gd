@@ -1,3 +1,4 @@
+@tool
 extends Node3D
 
 @export var weapon_data: WeaponData
@@ -16,12 +17,13 @@ func _ready():
 func shoot():
 	if not can_shoot or current_weapon == null or camera == null:
 		return
-	
+		
 	can_shoot = false
 	
+	var space_state = camera.get_world_3d().direct_space_state
+	var screen_center = get_viewport().size / 2
+	
 	for i in range(weapon_data.pellets):
-		var space_state = camera.get_world_3d().direct_space_state
-		var screen_center = get_viewport().size / 2
 		var origin = camera.project_ray_origin(screen_center)
 		
 		var direction = camera.project_ray_normal(screen_center)
@@ -40,7 +42,9 @@ func shoot():
 		
 		if result and result.collider.has_node("HealthComponent"):
 			result.collider.get_node("HealthComponent").damage(weapon_data.damage)
-
-		var cooldown = 1.0 / float(weapon_data.fire_rate)
-		await get_tree().create_timer(cooldown).timeout
-		can_shoot = true
+	
+	current_weapon.apply_recoil()
+	
+	var cooldown = 1.0 / float(weapon_data.fire_rate)
+	await get_tree().create_timer(cooldown).timeout
+	can_shoot = true

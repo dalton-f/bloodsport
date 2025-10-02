@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://wsevk4hddh2a"]
+[gd_scene load_steps=4 format=3 uid="uid://wsevk4hddh2a"]
 
 [ext_resource type="PackedScene" uid="uid://covvcvwrrscns" path="res://Entities/Weapons/WeaponTypes/Pistol/Pistol.gltf" id="1_y36us"]
+[ext_resource type="Script" uid="uid://de8gs3hyajrhk" path="res://Entities/Weapons/RecoilHandler/RecoilHandler.gd" id="2_purpd"]
+[ext_resource type="Curve" uid="uid://cr7cusceupwm0" path="res://Entities/Weapons/RecoilHandler/recoil_curve.tres" id="3_j06v3"]
 
-[node name="Pistol" instance=ExtResource("1_y36us")]
+[node name="Pistol" node_paths=PackedStringArray("target_object") instance=ExtResource("1_y36us")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+script = ExtResource("2_purpd")
+target_object = NodePath(".")
+recoil_rotation_x = ExtResource("3_j06v3")
+recoil_rotation_z = ExtResource("3_j06v3")
+recoil_position_z = ExtResource("3_j06v3")
+recoil_amplitude = Vector3(0.75, 0.4, 0.15)
+lerp_speed = 5.0

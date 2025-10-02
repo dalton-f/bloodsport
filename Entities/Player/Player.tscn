@@ -25,7 +25,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.77752537, 0)
 [node name="Camera3D" type="Camera3D" parent="Head"]
 
 [node name="WeaponsManager" parent="Head/Camera3D" instance=ExtResource("3_vweq0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3452071, -0.40005463, -0.8196671)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5606173, -0.40005463, -0.970376)
 weapon_data = ExtResource("3_1des2")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_ww0jn")]
