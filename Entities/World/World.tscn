@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://jyw067d6b7a1"]
+[gd_scene load_steps=14 format=3 uid="uid://jyw067d6b7a1"]
 
 [ext_resource type="PackedScene" uid="uid://bqu265gwb7udo" path="res://Entities/Components/HealthComponent/HealthComponent.tscn" id="1_1j0jg"]
 [ext_resource type="PackedScene" uid="uid://cyfhijj5hleol" path="res://Entities/Player/Player.tscn" id="1_8rr0o"]
 [ext_resource type="Shader" uid="uid://dfwsqetosfke7" path="res://Entities/World/World.gdshader" id="1_n0y24"]
+[ext_resource type="PackedScene" uid="uid://dl34grdr2ffx" path="res://Entities/Enemies/Enemy.tscn" id="2_n7sqv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n7sqv"]
 shader = ExtResource("1_n0y24")
@@ -23,6 +24,10 @@ background_mode = 2
 sky = SubResource("Sky_8rr0o")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_n0y24"]
+vertices = PackedVector3Array(-14.5, -0.7449131, 1, -9.75, -0.7449131, 1.25, -9.5, -0.7449131, -0.5, -6.75, -0.7449131, -0.5, -6.75, -0.7449131, -14.5, -14.5, -0.7449131, -14.5, -4.75, -0.7449131, -0.5, -4.5, -0.7449131, 0, 14.5, -0.7449131, 0, 14.5, -0.7449131, -14.5, -4.5, -0.7449131, 4.5, -6.25, -0.7449131, 4.75, -6, -0.7449131, 14.5, 14.5, -0.7449131, 14.5, -8.75, 3.505087, 0.5, -8.75, 3.505087, 3.5, -5.5, 3.505087, 3.5, -5.5, 3.505087, 0.5, -8.5, -0.4949131, 0.75, -8.5, -0.4949131, 3.5, -5.75, -0.4949131, 3.5, -5.75, -0.4949131, 0.75, -9.75, -0.7449131, 4.5, -14.5, -0.7449131, 14.5)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 2), PackedInt32Array(0, 5, 2), PackedInt32Array(2, 5, 4), PackedInt32Array(6, 3, 4), PackedInt32Array(6, 4, 7), PackedInt32Array(7, 4, 8), PackedInt32Array(8, 4, 9), PackedInt32Array(12, 11, 10), PackedInt32Array(10, 7, 8), PackedInt32Array(12, 10, 13), PackedInt32Array(13, 10, 8), PackedInt32Array(17, 16, 14), PackedInt32Array(14, 16, 15), PackedInt32Array(21, 20, 18), PackedInt32Array(18, 20, 19), PackedInt32Array(0, 1, 22), PackedInt32Array(12, 22, 11), PackedInt32Array(12, 23, 22), PackedInt32Array(22, 23, 0)]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_5iorc"]
 
@@ -52,6 +57,10 @@ render_target_update_mode = 4
 
 [node name="World" type="Node3D" parent="SubViewport"]
 
+[node name="Enemy" parent="SubViewport/World" instance=ExtResource("2_n7sqv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.156546, 0.025729656, 8.668385)
+player_path = NodePath("../Player")
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport/World"]
 environment = SubResource("Environment_1j0jg")
 
@@ -59,7 +68,10 @@ environment = SubResource("Environment_1j0jg")
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
-[node name="Environment" type="Node3D" parent="SubViewport/World"]
+[node name="Player" parent="SubViewport/World" instance=ExtResource("1_8rr0o")]
+
+[node name="Environment" type="NavigationRegion3D" parent="SubViewport/World"]
+navigation_mesh = SubResource("NavigationMesh_n0y24")
 
 [node name="Ground" type="StaticBody3D" parent="SubViewport/World/Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2449131, 0)
@@ -83,5 +95,3 @@ transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -7.1296883, 1.0965743, 2)
 shape = SubResource("ConcavePolygonShape3D_n7sqv")
 
 [node name="HealthComponent" parent="SubViewport/World/Environment/StaticBody3D" instance=ExtResource("1_1j0jg")]
-
-[node name="Player" parent="SubViewport/World" instance=ExtResource("1_8rr0o")]

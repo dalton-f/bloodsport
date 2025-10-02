@@ -46,6 +46,7 @@ func damage(amount: int) -> void:
 	emit_signal("health_changed", current_health)
 	
 	print("Took damage:", amount, "Current health:", current_health)
+
 	
 	if current_health <= 0:
 		emit_signal("died")
@@ -57,6 +58,8 @@ func damage(amount: int) -> void:
 func heal(amount: int) -> void:
 	current_health = min(current_health + amount, max_health)
 	emit_signal("health_changed", current_health)
+	
+	print("Healed:", amount, "Current health:", current_health)
 
 func has_died() -> bool:
 	return current_health <= 0
