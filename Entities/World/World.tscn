@@ -2,9 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://cyfhijj5hleol" path="res://Entities/Player/Player.tscn" id="1_8rr0o"]
 [ext_resource type="Shader" uid="uid://dfwsqetosfke7" path="res://Entities/World/World.gdshader" id="1_n0y24"]
-[ext_resource type="PackedScene" uid="uid://dl34grdr2ffx" path="res://Entities/Enemies/Enemy.tscn" id="2_n7sqv"]
+[ext_resource type="Texture2D" uid="uid://dtkb0hqs0nmdw" path="res://Assets/Textures/skybox.png" id="3_kj8q6"]
 [ext_resource type="PackedScene" uid="uid://cv3p78uj4hoxv" path="res://Entities/World/Props/Floors/Floor.tscn" id="4_n7sqv"]
 [ext_resource type="PackedScene" uid="uid://bbr37we454k8i" path="res://Entities/World/Props/Walls/Wall.tscn" id="5_2ip22"]
+[ext_resource type="PackedScene" uid="uid://dtkgybwacsbla" path="res://Entities/GameManager/GameManager.tscn" id="7_kwlee"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n7sqv"]
 shader = ExtResource("1_n0y24")
@@ -13,22 +14,17 @@ shader_parameter/dithering = true
 shader_parameter/colors = 12
 shader_parameter/dither_size = 1
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5iorc"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_kj8q6"]
+panorama = ExtResource("3_kj8q6")
 
 [sub_resource type="Sky" id="Sky_8rr0o"]
-sky_material = SubResource("ProceduralSkyMaterial_5iorc")
+sky_material = SubResource("PanoramaSkyMaterial_kj8q6")
 
 [sub_resource type="Environment" id="Environment_1j0jg"]
 background_mode = 2
 sky = SubResource("Sky_8rr0o")
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="NavigationMesh" id="NavigationMesh_n7sqv"]
-vertices = PackedVector3Array(-20.889252, 75.27317, -6.8690257, -20.889252, 75.27317, 6.3809743, 21.360748, 75.27317, 6.3809743, 21.360748, 75.27317, -6.8690257)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [node name="SubViewportContainer" type="SubViewportContainer"]
 material = SubResource("ShaderMaterial_n7sqv")
@@ -43,14 +39,10 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="."]
 handle_input_locally = false
-size = Vector2i(1152, 648)
+size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
 [node name="World" type="Node3D" parent="SubViewport"]
-
-[node name="Enemy" parent="SubViewport/World" instance=ExtResource("2_n7sqv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.248661, -0.67427033, -1.2783523)
-player_path = NodePath("../Player")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport/World"]
 environment = SubResource("Environment_1j0jg")
@@ -61,36 +53,68 @@ shadow_enabled = true
 
 [node name="Player" parent="SubViewport/World" instance=ExtResource("1_8rr0o")]
 
-[node name="World" type="NavigationRegion3D" parent="SubViewport/World"]
+[node name="World" type="Node3D" parent="SubViewport/World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -76.4, 0)
-navigation_mesh = SubResource("NavigationMesh_n7sqv")
 
-[node name="Floor" parent="SubViewport/World/World" instance=ExtResource("4_n7sqv")]
+[node name="Arena" type="Node3D" parent="SubViewport/World/World"]
+
+[node name="Floor" parent="SubViewport/World/World/Arena" instance=ExtResource("4_n7sqv")]
 transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, 75, 0)
 
-[node name="Floor4" parent="SubViewport/World/World" instance=ExtResource("4_n7sqv")]
+[node name="Floor4" parent="SubViewport/World/World/Arena" instance=ExtResource("4_n7sqv")]
 transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, 75, -14.25)
 
-[node name="Floor5" parent="SubViewport/World/World" instance=ExtResource("4_n7sqv")]
+[node name="Floor5" parent="SubViewport/World/World/Arena" instance=ExtResource("4_n7sqv")]
 transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 14.250001, 75, -14.25)
 
-[node name="Floor2" parent="SubViewport/World/World" instance=ExtResource("4_n7sqv")]
+[node name="Floor2" parent="SubViewport/World/World/Arena" instance=ExtResource("4_n7sqv")]
 transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -14.3, 75, 0)
 
-[node name="Floor6" parent="SubViewport/World/World" instance=ExtResource("4_n7sqv")]
+[node name="Floor6" parent="SubViewport/World/World/Arena" instance=ExtResource("4_n7sqv")]
 transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -14.3, 75, -14.25)
 
-[node name="WALL" parent="SubViewport/World/World" instance=ExtResource("5_2ip22")]
+[node name="WALL" parent="SubViewport/World/World/Arena" instance=ExtResource("5_2ip22")]
 transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, 76.75, 7.25)
 
-[node name="Floor3" parent="SubViewport/World/World" instance=ExtResource("4_n7sqv")]
+[node name="Floor3" parent="SubViewport/World/World/Arena" instance=ExtResource("4_n7sqv")]
 transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 14.3, 75, 0)
 
-[node name="WALL4" parent="SubViewport/World/World" instance=ExtResource("5_2ip22")]
+[node name="WALL4" parent="SubViewport/World/World/Arena" instance=ExtResource("5_2ip22")]
 transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 14.449999, 76.75, 7.25)
 
-[node name="WALL2" parent="SubViewport/World/World" instance=ExtResource("5_2ip22")]
+[node name="WALL2" parent="SubViewport/World/World/Arena" instance=ExtResource("5_2ip22")]
 transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -14.45, 76.75, 7.25)
 
-[node name="WALL3" parent="SubViewport/World/World" instance=ExtResource("5_2ip22")]
-transform = Transform3D(-1.0927848e-09, 0, 0.025, 0, 0.025, 0, -0.025, 0, -1.0927848e-09, -21.65, 76.75, -0.050000023)
+[node name="WALL6" parent="SubViewport/World/World/Arena" instance=ExtResource("5_2ip22")]
+transform = Transform3D(-0.025, 0, -2.7939677e-09, 0, 0.024999999, 0, 2.7939677e-09, 0, -0.025, -14.45, 76.75, -21.4)
+
+[node name="WALL7" parent="SubViewport/World/World/Arena" instance=ExtResource("5_2ip22")]
+transform = Transform3D(-0.025, 0, -2.7939677e-09, 0, 0.024999999, 0, 2.7939677e-09, 0, -0.025, -0.049999617, 76.75, -21.4)
+
+[node name="WALL8" parent="SubViewport/World/World/Arena" instance=ExtResource("5_2ip22")]
+transform = Transform3D(-0.025, 0, -2.7939677e-09, 0, 0.024999999, 0, 2.7939677e-09, 0, -0.025, 14.35, 76.75, -21.4)
+
+[node name="WALL3" parent="SubViewport/World/World/Arena" instance=ExtResource("5_2ip22")]
+transform = Transform3D(-1.0927848e-09, 0, 0.025, 0, 0.025, 0, -0.025, 0, -1.0927848e-09, -21.2, 76.75, -0.050000023)
+
+[node name="WALL9" parent="SubViewport/World/World/Arena" instance=ExtResource("5_2ip22")]
+transform = Transform3D(-1.0927848e-09, 0, -0.025, 0, 0.025, 0, 0.025, 0, -1.0927848e-09, 21.400002, 76.75, -0.050000023)
+
+[node name="WALL5" parent="SubViewport/World/World/Arena" instance=ExtResource("5_2ip22")]
+transform = Transform3D(-1.0927848e-09, 0, 0.025, 0, 0.025, 0, -0.025, 0, -1.0927848e-09, -21.2, 76.75, -14.499999)
+
+[node name="WALL10" parent="SubViewport/World/World/Arena" instance=ExtResource("5_2ip22")]
+transform = Transform3D(3.2783543e-09, 0, -0.025, 0, 0.025, 0, 0.025, 0, 3.2783543e-09, 21.4, 76.75, -14.499999)
+
+[node name="GameManager" parent="SubViewport/World" node_paths=PackedStringArray("player") instance=ExtResource("7_kwlee")]
+spawn_points = Array[NodePath]([NodePath("../SpawnA"), NodePath("../SpawnB"), NodePath("../SpawnC")])
+player = NodePath("../Player")
+
+[node name="SpawnA" type="Marker3D" parent="SubViewport/World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, -1.618, -13.9)
+
+[node name="SpawnB" type="Marker3D" parent="SubViewport/World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.6, -1.618, 0)
+
+[node name="SpawnC" type="Marker3D" parent="SubViewport/World"]
+transform = Transform3D(1, 0, 0, 0, 0.92263234, -0.38568062, 0, 0.38568062, 0.92263234, -9.8, -1.6182013, -15.900001)
