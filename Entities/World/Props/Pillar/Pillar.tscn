@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://d3n5i1lrp2w6c"]
+
+[ext_resource type="PackedScene" uid="uid://0necmiodlvuk" path="res://Entities/World/Props/Pillar/PILLAR.glb" id="1_7d7jm"]
+[ext_resource type="Shader" uid="uid://cgyxbn7sujqqb" path="res://Assets/Shaders/psx.gdshader" id="2_iuuyg"]
+[ext_resource type="Texture2D" uid="uid://dyqy6grwv3ako" path="res://Entities/World/Props/Pillar/PILLAR_brownbrick.png" id="3_ufdb2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yws4m"]
+render_priority = 0
+shader = ExtResource("2_iuuyg")
+shader_parameter/affine_mapping = false
+shader_parameter/albedo = ExtResource("3_ufdb2")
+shader_parameter/alpha_scissor = 0.7
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(320, 240)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_iuuyg"]
+points = PackedVector3Array(-0.12236667, -0.056474213, -1.0424666, 0.108166665, 0.075220436, 1.0652666, 0.108166665, -0.08942044, 1.0652666, -0.12236667, 0.042296775, 1.0652666, 0.075220436, 0.108166665, -1.0424666, 0.108166665, -0.08942044, -1.0424666, -0.056474213, -0.12236667, 1.0652666, -0.08942044, 0.108166665, -1.0424666, -0.08942044, 0.108166665, 1.0652666, 0.042296775, -0.12236667, -1.0424666, -0.12236667, -0.056474213, 1.0652666, -0.056474213, -0.12236667, -1.0424666, 0.108166665, 0.075220436, -1.0424666, 0.075220436, 0.108166665, 1.0652666, 0.042296775, -0.12236667, 1.0652666, -0.12236667, 0.042296775, -1.0424666)
+
+[node name="PILLAR" instance=ExtResource("1_7d7jm")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+
+[node name="Plane_011" parent="." index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_yws4m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(135.99725, 0, 0, 0, 0, -67.54052, 0, 135.99725, 0, 0, 16.201807, 0)
+shape = SubResource("ConvexPolygonShape3D_iuuyg")

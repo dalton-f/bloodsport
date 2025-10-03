@@ -20,14 +20,11 @@ config/icon="res://icon.svg"
 AudioManager="*res://Entities/Singletons/AudioManager.gd"
 EffectsManager="*res://Entities/Singletons/EffectsManager.gd"
 
-[debug]
-
-settings/stdout/print_fps=true
-
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/mode=3
 
 [input]
 

@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://djba3n848epq6"]
+
+[ext_resource type="PackedScene" uid="uid://bt8y5u6ayi507" path="res://Entities/World/Props/Barrel/BARREL.glb" id="1_duf8g"]
+[ext_resource type="Shader" uid="uid://cgyxbn7sujqqb" path="res://Assets/Shaders/psx.gdshader" id="2_4sup7"]
+[ext_resource type="Texture2D" uid="uid://dulb8wq8eit0v" path="res://Entities/World/Props/Barrel/BARREL_barrelUV.png" id="3_lc7w8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jh45d"]
+render_priority = 0
+shader = ExtResource("2_4sup7")
+shader_parameter/affine_mapping = false
+shader_parameter/albedo = ExtResource("3_lc7w8")
+shader_parameter/alpha_scissor = 0.7
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(320, 240)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4sup7"]
+points = PackedVector3Array(0.8957172, 7.957697, 0.26862386, -1.0562477, 0.40837097, -0.38177633, -1.0562477, 0.40837097, 0.34716678, -0.8129811, 14.020638, -0.62482876, 0.64511925, -1.5362387, -0.8678812, -0.5699287, 14.020638, 0.8332716, 0.64511925, -1.5362387, 0.8332716, 0.8881717, 14.020638, -0.62482876, 0.64511925, 14.020638, 0.8332716, -0.32687628, 10.373544, -1.1111478, -0.32687628, 1.3814373, 1.0765382, -0.5699287, -1.5362387, -0.8678812, -1.0562477, 9.402, 0.5902192, 0.8881717, -1.5362387, -0.62482876, -0.8129811, -1.5362387, 0.5902192, 0.40206683, 10.129896, 1.0765382, 0.8881717, 3.326047, 0.8332716, 0.40206683, 9.402, -1.1111478, -0.08382387, 1.1377902, -1.1111478, -0.8129811, 1.1377902, -0.8678812, -1.0562477, 12.076029, -0.38177633, 0.8881717, 14.020638, 0.5902192, -0.32687628, 11.1029625, 1.0765382, 0.64511925, 14.020638, -0.8678812, -0.8129811, 0.65201855, 0.8332716, 0.1590144, 0.16624689, 1.0765382, -0.8129811, 11.346609, -0.8678812, -0.8129811, 14.020638, 0.5902192, 0.8881717, -1.5362387, 0.5902192, -0.5699287, 14.020638, -0.8678812, -0.8129811, 11.832381, 0.8332716, -0.5699287, -1.5362387, 0.8332716)
+
+[node name="BARREL2" instance=ExtResource("1_duf8g")]
+transform = Transform3D(0.07, 0, 0, 0, 0.07, 0, 0, 0, 0.07, 0, 0, 0)
+
+[node name="BARREL" parent="." index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_jh45d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(0, 0, 9.073064, 0, 1.3846354, 0, -9.562208, 0, 0, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_4sup7")
