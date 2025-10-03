@@ -2,7 +2,9 @@ extends CharacterBody3D
 
 var player = null
 
-const SPEED = 2
+var tween : Tween
+
+const SPEED = 5
 
 @export var player_path : NodePath
 
@@ -34,4 +36,8 @@ func _on_died():
 	queue_free()
 
 func _update_health_bar(current_health):
-	create_tween().tween_property(health_bar, "value", current_health, 0.5)
+	if tween and tween.is_running():
+		tween.kill()
+		
+	tween = create_tween()
+	tween.tween_property(health_bar, "value", current_health, 0.5)

@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://bbr37we454k8i"]
+
+[ext_resource type="PackedScene" uid="uid://hvsosg7lvqnk" path="res://Entities/World/Props/Walls/Wall.glb" id="1_0c5vu"]
+[ext_resource type="Shader" uid="uid://cgyxbn7sujqqb" path="res://Assets/Shaders/psx.gdshader" id="2_p5kr3"]
+[ext_resource type="Texture2D" uid="uid://cbtm7bg45o883" path="res://Entities/World/Props/Walls/WALL_T_WALL_BC.png" id="3_qhc03"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4r5ji"]
+render_priority = 0
+shader = ExtResource("2_p5kr3")
+shader_parameter/affine_mapping = false
+shader_parameter/albedo = ExtResource("3_qhc03")
+shader_parameter/alpha_scissor = 0.7
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(320, 240)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p5kr3"]
+render_priority = 0
+shader = ExtResource("2_p5kr3")
+shader_parameter/affine_mapping = false
+shader_parameter/albedo = ExtResource("3_qhc03")
+shader_parameter/alpha_scissor = 0.7
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(320, 240)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_p5kr3"]
+points = PackedVector3Array(2.0177817, -0.00815475, 1.0339019, -2.0374818, -0.07151824, -1.0569818, -2.0374818, -0.00815475, -1.0569818, -2.0374818, -0.07151824, 1.0339019, -0.13647777, 0.118572235, 1.0973771, 2.0177817, -0.07151824, -1.0569818, 0.11677772, 0.118572235, -1.0569818, 0.11677772, -0.13488173, 1.0973771, -0.13647777, -0.13488173, -1.0569818, -2.0374818, -0.00815475, 1.0339019, 2.0177817, -0.00815475, -1.0569818, 2.0177817, -0.07151824, 1.0339019, 0.11677772, 0.118572235, 1.0973771, -0.13647777, 0.118572235, -1.0569818, -0.13647777, -0.13488173, 1.0973771, 0.11677772, -0.13488173, -1.0569818)
+
+[node name="WALL" instance=ExtResource("1_0c5vu")]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, 0, 0)
+
+[node name="Plane_004" parent="." index="0"]
+transform = Transform3D(145.09053, 0, 0, 0, -6.3421085e-06, -72.05653, 0, 145.09053, -3.149691e-06, 0, 0, 0)
+surface_material_override/0 = SubResource("ShaderMaterial_4r5ji")
+surface_material_override/1 = SubResource("ShaderMaterial_p5kr3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(145.09053, 0, 0, 0, -6.3421085e-06, -72.05653, 0, 145.09053, -3.149691e-06, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_p5kr3")
