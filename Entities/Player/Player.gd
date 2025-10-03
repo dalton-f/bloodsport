@@ -175,5 +175,5 @@ func _handle_death():
 	tween.tween_interval(0.2)                               
 	tween.tween_property(center_label, "modulate:a", 0.0, 0.5)
 
-func _damage_effect():
+func _damage_effect(_amount):
 	camera._camera_shake(0.2, 0.06)

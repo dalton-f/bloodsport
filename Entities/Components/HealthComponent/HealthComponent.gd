@@ -15,10 +15,12 @@ var current_health: float
 
 var _regeneration_timer: float = 0.0
 var _can_regenerate: bool = true
+var _regen_accumulator: float = 0.0
 
 signal health_changed(new_health: int)
 signal died
-signal damage_taken
+signal damage_taken(amount: int)
+signal healed(amount: float)
 
 func _ready() -> void:
 	current_health = max_health
@@ -36,10 +38,11 @@ func _process(delta: float) -> void:
 		
 	if _can_regenerate and current_health < max_health:
 		current_health = min(current_health + natural_regeneration_rate * delta, max_health)
+		
 		emit_signal("health_changed", current_health)
+		
 		return
 		
-
 	# Count timer down if player has just taken damage (ie. _can_regenerate is false)
 	_regeneration_timer = max(_regeneration_timer - delta, 0.0)
 	
@@ -49,7 +52,7 @@ func _process(delta: float) -> void:
 func damage(amount: int) -> void:
 	current_health = current_health - amount
 	emit_signal("health_changed", current_health)
-	emit_signal("damage_taken")
+	emit_signal("damage_taken", amount)
 	
 	if current_health <= 0:
 		emit_signal("died")
@@ -59,9 +62,9 @@ func damage(amount: int) -> void:
 	_regeneration_timer = regeneration_delay
 
 func heal(amount: int) -> void:
-	print("healing from ", current_health, " up to ", current_health + amount)
 	current_health = min(current_health + amount, max_health)
 	emit_signal("health_changed", current_health)
+	emit_signal("healed", amount)
 
 func has_died() -> bool:
 	return current_health <= 0

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dl34grdr2ffx"]
+[gd_scene load_steps=8 format=3 uid="uid://dl34grdr2ffx"]
 
 [ext_resource type="Script" uid="uid://yxjmunrene8x" path="res://Entities/Enemies/Enemy.gd" id="1_da0hj"]
 [ext_resource type="PackedScene" uid="uid://bqu265gwb7udo" path="res://Entities/Components/HealthComponent/HealthComponent.tscn" id="1_ttlo4"]
 [ext_resource type="PackedScene" uid="uid://ofllasc24q21" path="res://Entities/Enemies/Projectile.tscn" id="2_fln2h"]
+[ext_resource type="PackedScene" uid="uid://edtsqg56x1g1" path="res://Entities/Enemies/DamageIndicator.tscn" id="4_yxp7e"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a6hx2"]
 albedo_color = Color(1, 0, 0, 1)
@@ -27,3 +28,5 @@ shape = SubResource("ConvexPolygonShape3D_da0hj")
 natural_regeneration_rate = 10
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="DamageIndicator" parent="." instance=ExtResource("4_yxp7e")]

@@ -9,10 +9,10 @@ const SEPARATION_STRENGTH = 3
 
 const SHOOTING_RANGE = 10
 const SHOOT_COOLDOWN = 0.65
-const DAMAGE = 15
 
 @onready var health_component = $HealthComponent
 @onready var nav_agent = $NavigationAgent3D
+@onready var damage_indicator = $DamageIndicator
 
 @export var ProjectileScene: PackedScene 
 
@@ -21,7 +21,7 @@ var shoot_timer = 0.0
 
 func _ready():
 	health_component.connect("died", Callable(self, "_on_died"), CONNECT_ONE_SHOT)
-	health_component.connect("health_changed", Callable(self, "_update_health_indicators"))
+	health_component.connect("damage_taken", Callable(self, "_on_damage_taken"))
 	
 	add_to_group("enemies")
 
@@ -90,16 +90,13 @@ func shoot_projectile():
 	if player == null:
 		return
 
-	# Spawn projectile
 	var projectile = ProjectileScene.instantiate()
 	get_tree().current_scene.add_child(projectile)
 
-	# Position projectile at enemy's position
 	projectile.global_transform.origin = global_transform.origin
 
-	# Calculate direction toward player
 	var direction = (player.global_transform.origin - global_transform.origin).normalized()
 	projectile.velocity = direction * projectile.speed
 
-func _update_health_indicators(current_health):
-	pass
+func _on_damage_taken(amount: float) -> void:
+	damage_indicator.create_indicator_label(-amount)
