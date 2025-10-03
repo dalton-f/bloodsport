@@ -4,6 +4,8 @@ extends Node3D
 @export var weapon_data: WeaponData
 
 var camera
+var damage_mult = 1
+var range_mult = 1
 
 var current_weapon: Node3D
 var can_shoot: bool = true
@@ -35,7 +37,7 @@ func shoot():
 		direction = direction.normalized()
 		
 		# Project a ray normal from the center of the screen up to a distance of 100
-		var end = origin + direction * 100.0
+		var end = origin + direction * (weapon_data.range * range_mult)
 	
 		var query = PhysicsRayQueryParameters3D.create(origin, end)
 		query.collide_with_bodies = true
@@ -43,10 +45,12 @@ func shoot():
 		var result = space_state.intersect_ray(query)
 		
 		if result and result.collider.has_node("HealthComponent"):
-			result.collider.get_node("HealthComponent").damage(weapon_data.damage)
+			result.collider.get_node("HealthComponent").damage(weapon_data.damage * damage_mult)
 	
 	_spawn_muzzle_flash()
 	current_weapon.apply_recoil()
+	
+	camera._camera_shake(0.2, 0.025)
 	
 	var cooldown = 1.0 / float(weapon_data.fire_rate)
 	await get_tree().create_timer(cooldown).timeout
@@ -65,3 +69,9 @@ func _spawn_muzzle_flash():
 		await get_tree().create_timer(0.1).timeout
 		if flash and flash.is_inside_tree():
 			flash.queue_free()
+
+func set_damage_mult(mult):
+	damage_mult = mult
+
+func set_range_mult(mult):
+	range_mult = mult
