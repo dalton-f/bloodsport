@@ -18,6 +18,7 @@ var _can_regenerate: bool = true
 
 signal health_changed(new_health: int)
 signal died
+signal damage_taken
 
 func _ready() -> void:
 	current_health = max_health
@@ -48,6 +49,7 @@ func _process(delta: float) -> void:
 func damage(amount: int) -> void:
 	current_health = current_health - amount
 	emit_signal("health_changed", current_health)
+	emit_signal("damage_taken")
 	
 	if current_health <= 0:
 		emit_signal("died")

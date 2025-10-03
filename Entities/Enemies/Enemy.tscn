@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dl34grdr2ffx"]
+[gd_scene load_steps=7 format=3 uid="uid://dl34grdr2ffx"]
 
 [ext_resource type="Script" uid="uid://yxjmunrene8x" path="res://Entities/Enemies/Enemy.gd" id="1_da0hj"]
 [ext_resource type="PackedScene" uid="uid://bqu265gwb7udo" path="res://Entities/Components/HealthComponent/HealthComponent.tscn" id="1_ttlo4"]
+[ext_resource type="PackedScene" uid="uid://ofllasc24q21" path="res://Entities/Enemies/Projectile.tscn" id="2_fln2h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a6hx2"]
 albedo_color = Color(1, 0, 0, 1)
@@ -13,6 +14,7 @@ points = PackedVector3Array(-0.12520654, -0.532801, -0.4805069, 0.022783129, 0.4
 
 [node name="Enemy" type="CharacterBody3D"]
 script = ExtResource("1_da0hj")
+ProjectileScene = ExtResource("2_fln2h")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_a6hx2")
