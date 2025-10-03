@@ -7,8 +7,8 @@ const SPEED = 2
 const SEPARATION_RADIUS = 2.5
 const SEPARATION_STRENGTH = 3
 
-const SHOOTING_RANGE = 10
-const SHOOT_COOLDOWN = 0.65
+const SHOOTING_RANGE = 12
+const SHOOT_COOLDOWN = 0.7
 
 @onready var health_component = $HealthComponent
 @onready var nav_agent = $NavigationAgent3D

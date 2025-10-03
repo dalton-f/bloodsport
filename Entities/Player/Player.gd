@@ -145,7 +145,7 @@ func set_speed_multiplier(mult):
 	speed_mult = mult
 
 func show_wave_number(wave_index: int):
-	center_label.text = "Wave %d" % (wave_index + 1)
+	center_label.text = "WAVE %d" % (wave_index + 1)
 	center_label.modulate.a = 0.0
 	
 	if tween:
@@ -164,7 +164,7 @@ func _update_health_bar(current_health):
 	tween.tween_property(health_bar, "value", current_health, 0.5)
 	
 func _handle_death():
-	center_label.text = "You died!"
+	center_label.text = "YOU DIED!"
 	center_label.modulate.a = 0.0
 	
 	if tween:

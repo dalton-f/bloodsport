@@ -1,7 +1,7 @@
 extends Node3D
 
-@export var font_size := 80
-@export var label_range := 2
+@export var font_size := 150
+@export var label_range := 1
 @export var animation_duration := 1.5
 
 func create_indicator_label(value):
@@ -14,7 +14,7 @@ func create_indicator_label(value):
 
 func _get_custom_label_3d(value):
 	var label := Label3D.new()
-	label.text = ("%+.2f" % value)
+	label.text = str(value)
 	label.font_size = font_size
 	label.outline_size = font_size / 2
 

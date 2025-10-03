@@ -209,7 +209,7 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 16.477318, 74.96339, -1
 transform = Transform3D(0.088588804, 0, -0.04638992, 0, 0.1, 0, 0.04638992, 0, 0.088588804, 9.812329, 74.96339, 3.1617975)
 
 [node name="GameManager" parent="SubViewport/World" node_paths=PackedStringArray("player") instance=ExtResource("7_kwlee")]
-spawn_points = Array[NodePath]([NodePath("../SpawnA"), NodePath("../SpawnB"), NodePath("../SpawnC")])
+spawn_points = Array[NodePath]([NodePath("../SpawnA"), NodePath("../SpawnB"), NodePath("../SpawnC"), NodePath("../SpawnD")])
 player = NodePath("../Player")
 music = ExtResource("7_8l2sk")
 
@@ -220,4 +220,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, -1.618, 4.1000004)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.6, -1.618, -3)
 
 [node name="SpawnC" type="Marker3D" parent="SubViewport/World"]
-transform = Transform3D(1, 0, 0, 0, 0.92263234, -0.38568062, 0, 0.38568062, 0.92263234, 4.2, -1.6182013, -8.900001)
+transform = Transform3D(1, 0, 0, 0, 0.92263234, -0.38568062, 0, 0.38568062, 0.92263234, 3.1999998, -1.6182013, 11.099999)
+
+[node name="SpawnD" type="Marker3D" parent="SubViewport/World"]
+transform = Transform3D(1, 0, 0, 0, 0.92263234, -0.38568062, 0, 0.38568062, 0.92263234, -9.8, -1.6182013, 6.0999994)

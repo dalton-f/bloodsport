@@ -15,7 +15,6 @@ var current_health: float
 
 var _regeneration_timer: float = 0.0
 var _can_regenerate: bool = true
-var _regen_accumulator: float = 0.0
 
 signal health_changed(new_health: int)
 signal died
