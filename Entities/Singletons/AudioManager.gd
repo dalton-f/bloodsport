@@ -17,7 +17,7 @@ func _ready():
 
 func play_music(track: AudioStream, loop: bool=true):
 	music_player.stream = track
-	music_player.loop = loop
+	track.loop = loop
 	music_player.volume_db = linear_to_db(music_volume)
 	music_player.play()
 

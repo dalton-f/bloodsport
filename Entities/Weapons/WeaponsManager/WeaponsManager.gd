@@ -50,6 +50,8 @@ func shoot():
 	_spawn_muzzle_flash()
 	current_weapon.apply_recoil()
 	
+	AudioManager.play_sfx(weapon_data.sfx)
+	
 	camera._camera_shake(0.2, 0.025)
 	
 	var cooldown = 1.0 / float(weapon_data.fire_rate)

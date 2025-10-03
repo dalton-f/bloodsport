@@ -3,6 +3,8 @@ extends Node3D
 @export var spawn_points: Array[NodePath] 
 @export var player: CharacterBody3D
 
+@export var music: AudioStream
+
 var waves = [
 	{
 		"enemies": [
@@ -16,9 +18,15 @@ var waves = [
 	},
 		{
 		"enemies": [
+			{"scene": preload("res://Entities/Enemies/Enemy.tscn"), "count": 7},
+		],
+	},
+		{
+		"enemies": [
 			{"scene": preload("res://Entities/Enemies/Enemy.tscn"), "count": 10},
 		],
 	}
+	
 ]
 var current_wave := 0
 var enemies_alive := 0
@@ -29,6 +37,7 @@ signal all_waves_completed()
 
 func _ready() -> void:
 	start_waves()
+	AudioManager.play_music(music)
 
 func start_waves():
 	current_wave = 0
