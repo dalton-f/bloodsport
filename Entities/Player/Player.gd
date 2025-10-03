@@ -1,7 +1,11 @@
 extends CharacterBody3D
 
 var speed
+var speed_mult = 1
 var default_weapon_holder_position : Vector3
+var tween
+
+var active_effects = []
 
 const WALK_SPEED = 5.0
 const SPRINT_SPEED = 8.0
@@ -21,6 +25,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
 @onready var weapon_manager = $Head/Camera3D/WeaponsManager
+@onready var wave_label: Label = $CanvasLayer/UI/CenterContainer/Label
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -32,9 +37,8 @@ func _unhandled_input(event):
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 
-
 func _physics_process(delta):
-	speed = WALK_SPEED
+	speed = WALK_SPEED * speed_mult
 	
 	# Add the gravity.
 	if not is_on_floor():
@@ -46,7 +50,7 @@ func _physics_process(delta):
 	
 	# Handle Sprint.
 	if Input.is_action_pressed("sprint"):
-		speed = SPRINT_SPEED
+		speed = SPRINT_SPEED * speed_mult
 
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("left", "right", "up", "down")
@@ -108,3 +112,35 @@ func _weapon_bob(vel : float, delta):
 		else:
 			weapon_manager.position.y = lerp(weapon_manager.position.y, default_weapon_holder_position.y, 10 * delta)
 			weapon_manager.position.x = lerp(weapon_manager.position.x, default_weapon_holder_position.x, 10 * delta)
+
+func apply_normal_pair(pair):
+	pair["buff"]["apply"].call(self)
+	pair["debuff"]["apply"].call(self)
+	
+	active_effects.append(pair)
+
+func remove_normal_pair(pair):
+	if pair in active_effects:
+		pair["buff"]["revert"].call(self)
+		pair["debuff"]["revert"].call(self)
+		
+		active_effects.erase(pair)
+
+func apply_extreme(effect):
+	effect["apply"].call(self)
+	active_effects.append(effect)
+
+func set_speed_multiplier(mult):
+	speed_mult = mult
+
+func show_wave_number(wave_index: int):
+	wave_label.text = "Wave %d" % (wave_index + 1)
+	wave_label.modulate.a = 0.0
+	
+	if tween and tween.is_running():
+		tween.kill()
+	
+	tween = create_tween()
+	tween.tween_property(wave_label, "modulate:a", 1.0, 0.5)
+	tween.tween_interval(0.2)                               
+	tween.tween_property(wave_label, "modulate:a", 0.0, 0.5)
