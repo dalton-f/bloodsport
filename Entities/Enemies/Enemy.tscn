@@ -23,3 +23,5 @@ shape = SubResource("ConvexPolygonShape3D_da0hj")
 
 [node name="HealthComponent" parent="." instance=ExtResource("1_ttlo4")]
 natural_regeneration_rate = 10
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
