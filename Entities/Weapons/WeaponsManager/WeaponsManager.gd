@@ -19,6 +19,9 @@ func _ready():
 	camera = get_parent()
 
 func shoot():
+	if get_tree().paused:
+		return
+		
 	if not can_shoot or current_weapon == null or camera == null:
 		return
 		
