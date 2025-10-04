@@ -100,25 +100,53 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="CanvasLayer/UI/CenterContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 74
-text = "addadgag"
+text = "Text here"
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -128.0
+offset_top = -79.0
 offset_right = 483.0
 grow_vertical = 0
 tooltip_auto_translate_mode = 2
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = 24
-theme_override_constants/margin_right = 24
-theme_override_constants/margin_bottom = 24
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/UI/MarginContainer"]
+process_mode = 3
 layout_mode = 2
 theme_override_font_sizes/font_size = 26
 theme_override_styles/background = SubResource("StyleBoxFlat_t38ms")
 theme_override_styles/fill = SubResource("StyleBoxFlat_hj1c0")
 value = 50.0
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 121.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="WaveNum" type="Label" parent="CanvasLayer/UI/MarginContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 54
+text = "Wave 1"
+
+[node name="RemainingNum" type="Label" parent="CanvasLayer/UI/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 54
+text = "REMAINING  ??"

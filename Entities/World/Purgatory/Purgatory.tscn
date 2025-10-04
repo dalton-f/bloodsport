@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnnvjdj77f0kf"]
+
+[ext_resource type="PackedScene" uid="uid://cv3p78uj4hoxv" path="res://Entities/World/Props/Floors/Floor.tscn" id="1_1d1h6"]
+[ext_resource type="Script" uid="uid://baietqqskxxa5" path="res://Entities/World/Purgatory/Purgatory.gd" id="1_jj272"]
+[ext_resource type="PackedScene" uid="uid://bbr37we454k8i" path="res://Entities/World/Props/Walls/Wall.tscn" id="2_jr6wo"]
+
+[node name="Purgatory" type="Node3D"]
+script = ExtResource("1_jj272")
+
+[node name="Floor" parent="." instance=ExtResource("1_1d1h6")]
+
+[node name="WALL" parent="." instance=ExtResource("2_jr6wo")]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, 2, 6.5)
+
+[node name="WALL3" parent="." instance=ExtResource("2_jr6wo")]
+transform = Transform3D(0, 0, 0.024999999, 0, 0.025, 0, -0.024999999, 0, 0, -6.5, 2, -0.5)
+
+[node name="WALL4" parent="." instance=ExtResource("2_jr6wo")]
+transform = Transform3D(0, 0, 0.024999999, 0, 0.025, 0, -0.024999999, 0, 0, 7, 2, -0.5)
+
+[node name="WALL2" parent="." instance=ExtResource("2_jr6wo")]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, 2, -6.5)
+
+[node name="PurgatorySpawn" type="Marker3D" parent="."]
+
+[node name="Pair" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 3)
+
+[node name="Extreme" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -3)
