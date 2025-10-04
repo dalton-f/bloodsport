@@ -7,6 +7,8 @@ func _ready():
 	
 	%Play.pressed.connect(play)
 	%Quit.pressed.connect(exit)
+	%PolybyteCredit.pressed.connect(polybyte)
+	%RoachCredit.pressed.connect(roach)
 
 # Load the main game scene after it has been loaded
 func play():
@@ -17,3 +19,9 @@ func play():
 # Quits the game	
 func exit():
 	get_tree().quit()
+
+func polybyte():
+	OS.shell_open("https://www.youtube.com/@polybytegames")
+
+func roach():
+	OS.shell_open("https://mutantmelod.itch.io/")

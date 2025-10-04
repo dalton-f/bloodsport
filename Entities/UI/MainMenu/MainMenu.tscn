@@ -1,10 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://bekjvdfkibsur"]
+[gd_scene load_steps=9 format=3 uid="uid://bekjvdfkibsur"]
 
 [ext_resource type="Script" uid="uid://dj68o3l51b3vf" path="res://Entities/UI/MainMenu/MainMenu.gd" id="1_6i2oa"]
 [ext_resource type="AudioStream" uid="uid://dcwd4i2na4pia" path="res://Assets/Audio/music_1.mp3" id="2_ix86x"]
+[ext_resource type="Texture2D" uid="uid://eiak5f57xbv3" path="res://Assets/Textures/menu_bg.png" id="3_f8sv2"]
+[ext_resource type="Texture2D" uid="uid://dy61hi7bq3gyp" path="res://Assets/Textures/polybytegames_logo.png" id="3_gn4nv"]
+[ext_resource type="Texture2D" uid="uid://wayf47m5mx5r" path="res://Assets/Textures/roach_logo.png" id="4_cwvmp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lc837"]
 bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+expand_margin_left = 32.0
+expand_margin_top = 8.0
+expand_margin_right = 32.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f8sv2"]
+bg_color = Color(0.15294118, 0.15294118, 0.15294118, 1)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
@@ -43,49 +61,77 @@ grow_vertical = 2
 script = ExtResource("1_6i2oa")
 music = ExtResource("2_ix86x")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.16862746, 0.16862746, 0.16862746, 1)
+texture = ExtResource("3_f8sv2")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+[node name="SplitContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/separation = 24
+
+[node name="PolybyteCredit" type="TextureButton" parent="MarginContainer/SplitContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("3_gn4nv")
+stretch_mode = 5
+
+[node name="RoachCredit" type="TextureButton" parent="MarginContainer/SplitContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("4_cwvmp")
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer"]
 layout_mode = 2
 theme_override_constants/separation = 64
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 64
+theme_override_font_sizes/normal_font_size = 150
 text = "BLOODSPORT"
 fit_content = true
 autowrap_mode = 0
 
-[node name="Play" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="Play" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 46
 theme_override_styles/normal = SubResource("StyleBoxFlat_lc837")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_f8sv2")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6i2oa")
 text = "PLAY"
 
-[node name="Quit" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="Quit" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 46
 theme_override_styles/normal = SubResource("StyleBoxFlat_lc837")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6i2oa")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6i2oa")
 text = "QUIT"
