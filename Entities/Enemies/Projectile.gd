@@ -1,6 +1,6 @@
 extends Area3D
 
-@export var speed: float = 20.0
+@export var speed: float = 25
 @export var lifetime: float = 5
 @export var damage: int = 12
 

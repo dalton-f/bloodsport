@@ -7,12 +7,13 @@ const SPEED = 2
 const SEPARATION_RADIUS = 2.5
 const SEPARATION_STRENGTH = 3
 
-const SHOOTING_RANGE = 12
-const SHOOT_COOLDOWN = 0.7
+const SHOOTING_RANGE = 7.5
+const SHOOT_COOLDOWN = 0.75
 
 @onready var health_component = $HealthComponent
 @onready var nav_agent = $NavigationAgent3D
 @onready var damage_indicator = $DamageIndicator
+@onready var spawn_particles = $GPUParticles3D
 
 @export var ProjectileScene: PackedScene 
 
@@ -24,6 +25,9 @@ func _ready():
 	health_component.connect("damage_taken", Callable(self, "_on_damage_taken"))
 	
 	add_to_group("enemies")
+	
+	spawn_particles.emitting = true
+	spawn_particles.connect("finished", Callable(spawn_particles, "queue_free"))
 
 func _process(delta):
 	velocity = Vector3.ZERO
@@ -93,7 +97,8 @@ func shoot_projectile():
 	var projectile = ProjectileScene.instantiate()
 	get_tree().current_scene.add_child(projectile)
 
-	projectile.global_transform.origin = global_transform.origin
+	var spawn_position = global_transform.origin + Vector3.UP * 0.5
+	projectile.global_transform.origin = spawn_position
 
 	var direction = (player.global_transform.origin - global_transform.origin).normalized()
 	projectile.velocity = direction * projectile.speed
