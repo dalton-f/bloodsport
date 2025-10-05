@@ -100,7 +100,7 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="CanvasLayer/UI/CenterContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 74
-text = "Text here"
+text = "TEXT HERE"
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI"]
 layout_mode = 1
@@ -143,10 +143,10 @@ theme_override_constants/margin_bottom = 32
 [node name="WaveNum" type="Label" parent="CanvasLayer/UI/MarginContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 54
-text = "Wave 1"
+text = "WAVE 1"
 
 [node name="RemainingNum" type="Label" parent="CanvasLayer/UI/MarginContainer2"]
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_font_sizes/font_size = 54
-text = "REMAINING  ??"
+text = "REMAINING  ?"
