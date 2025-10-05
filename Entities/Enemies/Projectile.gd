@@ -1,8 +1,8 @@
 extends Area3D
 
-@export var speed: float = 25
+@export var speed: float = 20
 @export var lifetime: float = 5
-@export var damage: int = 12
+@export var damage: int = 10
 
 var velocity: Vector3 = Vector3.ZERO
 
