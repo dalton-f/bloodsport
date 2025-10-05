@@ -208,7 +208,7 @@ transform = Transform3D(1.7320508, 0, 1, 0, 2, 0, -1, 0, 1.7320508, 7, 75, -12)
 transform = Transform3D(1.2499999, 0, -2.1650636, 0, 2.5, 0, 2.1650636, 0, 1.2499999, -1.1920929e-07, 75, -1)
 
 [node name="Crate8" parent="SubViewportContainer/SubViewport/World/World/DecorativeProps" instance=ExtResource("7_af7w7")]
-transform = Transform3D(1.2499998, 0, -2.1650634, 0, 2.4999998, 0, 2.1650634, 0, 1.2499998, -2.253805, 76.28935, -0.10324478)
+transform = Transform3D(1.2499998, 0, -2.1650634, 0, 2.4999998, 0, 2.1650634, 0, 1.2499998, -2.253805, 76.4504, -0.10324478)
 
 [node name="Crate11" parent="SubViewportContainer/SubViewport/World/World/DecorativeProps" instance=ExtResource("7_af7w7")]
 transform = Transform3D(-2.5454025, 0, -2.4022753, 0, 3.5, 0, 2.4022753, 0, -2.5454025, -12.170445, 75, -17.593449)

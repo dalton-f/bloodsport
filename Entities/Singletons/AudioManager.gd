@@ -3,8 +3,8 @@ extends Node
 var music_player: AudioStreamPlayer
 var sfx_player: AudioStreamPlayer
 
-var music_volume: float = 0.4
-var sfx_volume: float = 0.6
+var music_volume: float = 0.3
+var sfx_volume: float = 0.5
 
 func _ready():
 	music_player = AudioStreamPlayer.new()

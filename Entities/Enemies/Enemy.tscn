@@ -43,7 +43,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04434204, 0.04638672, 0)
 shape = SubResource("BoxShape3D_tk3ys")
 
 [node name="HealthComponent" parent="." instance=ExtResource("1_ttlo4")]
-natural_regeneration_rate = 10
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 

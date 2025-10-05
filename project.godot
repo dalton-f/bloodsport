@@ -13,7 +13,7 @@ config_version=5
 config/name="bloodsport"
 run/main_scene="uid://bekjvdfkibsur"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="uid://eiak5f57xbv3"
+config/icon="uid://cknnb6mprnbw8"
 
 [autoload]
 
