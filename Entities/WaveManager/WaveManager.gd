@@ -11,26 +11,26 @@ var waves = [
 			{"scene": preload("res://Entities/Enemies/Enemy.tscn"), "count": 3},
 		],
 	},
-	#{
-		#"enemies": [
-			#{"scene": preload("res://Entities/Enemies/Enemy.tscn"), "count": 5},
-		#],
-	#},
-		#{
-		#"enemies": [
-			#{"scene": preload("res://Entities/Enemies/Enemy.tscn"), "count": 7},
-		#],
-	#},
-		#{
-		#"enemies": [
-			#{"scene": preload("res://Entities/Enemies/Enemy.tscn"), "count": 7},
-		#],
-	#},
-			#{
-		#"enemies": [
-			#{"scene": preload("res://Entities/Enemies/Enemy.tscn"), "count": 7},
-		#],
-	#}
+	{
+		"enemies": [
+			{"scene": preload("res://Entities/Enemies/Enemy.tscn"), "count": 5},
+		],
+	},
+		{
+		"enemies": [
+			{"scene": preload("res://Entities/Enemies/Enemy.tscn"), "count": 7},
+		],
+	},
+		{
+		"enemies": [
+			{"scene": preload("res://Entities/Enemies/Enemy.tscn"), "count": 7},
+		],
+	},
+			{
+		"enemies": [
+			{"scene": preload("res://Entities/Enemies/Enemy.tscn"), "count": 7},
+		],
+	}
 ]
 
 var current_wave := 0

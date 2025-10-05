@@ -12,7 +12,7 @@ func _ready():
 	wave_manager.connect("all_waves_completed", Callable(self, "handle_win"))
 	win_menu.restart_pressed.connect(restart_game)
 	win_menu.quit_pressed.connect(func(): get_tree().quit())
-
+	
 func _unhandled_input(event):
 	if event.is_action_pressed("pause")  and not win_menu.visible:
 		if get_tree().paused:
@@ -44,6 +44,12 @@ func restart_game():
 	# Reset player health and position
 	player.global_transform = Transform3D()
 	player.health_component.heal(999)
+	
+	player.wave_display.visible = true
+	player.enemies_remaining_display.visible = true
+	player.health_bar.visible = true
+	
+	player.remove_all_effects()
 	
 	# Unpause game
 	win_menu.visible = false

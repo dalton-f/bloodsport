@@ -81,3 +81,6 @@ func set_damage_mult(mult):
 
 func set_range_mult(mult):
 	range_mult = mult
+
+func set_attack_speed_mult(mult):
+	attack_speed_mult = mult

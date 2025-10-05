@@ -3,12 +3,13 @@ extends Control
 
 # Access the play and exit buttons by using their unique names (need to be toggled in the node tree)
 func _ready():
-	AudioManager.play_music(music)
-	
 	%Play.pressed.connect(play)
 	%Quit.pressed.connect(exit)
 	%PolybyteCredit.pressed.connect(polybyte)
 	%RoachCredit.pressed.connect(roach)
+	
+	AudioManager.play_music(music)
+	
 
 # Load the main game scene after it has been loaded
 func play():
