@@ -31,7 +31,7 @@ func _ready():
 
 func _process(delta):
 	velocity = Vector3.ZERO
-	
+		
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
