@@ -3,13 +3,14 @@ extends CharacterBody3D
 var speed
 var speed_mult = 1
 var default_weapon_holder_position : Vector3
-var tween: Tween
+var health_tween: Tween
+var center_tween: Tween
 
 var active_effects = []
 
 const WALK_SPEED = 5.0
 const SPRINT_SPEED = 8.0
-const JUMP_VELOCITY = 4.8
+const JUMP_VELOCITY = 5.2
 const SENSITIVITY = 0.004
 const CROUCH_SPEED = 3.0
 const CROUCH_HEIGHT = 1.0
@@ -55,7 +56,7 @@ func _unhandled_input(event):
 
 func _physics_process(delta):
 	speed = WALK_SPEED * speed_mult
-	
+
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -157,16 +158,16 @@ func set_speed_multiplier(mult):
 	speed_mult = mult
 
 func show_wave_number(wave_index: int):
+	if center_tween and center_tween.is_running():
+		center_tween.kill()
+	
 	center_label.text = "WAVE %d" % (wave_index + 1)
 	center_label.modulate.a = 0.0
 	
-	if tween and tween.is_running():
-		tween.kill()
-	
-	tween = create_tween()
-	tween.tween_property(center_label, "modulate:a", 1.0, 0.5)
-	tween.tween_interval(0.2)                               
-	tween.tween_property(center_label, "modulate:a", 0.0, 0.5)
+	center_tween = create_tween()
+	center_tween.tween_property(center_label, "modulate:a", 1.0, 0.5)
+	center_tween.tween_interval(0.2)                               
+	center_tween.tween_property(center_label, "modulate:a", 0.0, 0.5)
 	
 	wave_display.text = "WAVE %d" % (wave_index + 1)
 
@@ -174,11 +175,11 @@ func show_enemies_number(enemies: int):
 	enemies_remaining_display.text = "REMAINING %d" % enemies
 
 func _update_health_bar(current_health):
-	if tween:
-		tween.kill()
+	if health_tween and health_tween.is_running():
+		health_tween.kill()
 		
-	tween = create_tween()
-	tween.tween_property(health_bar, "value", current_health, 0.5)
+	health_tween = create_tween()
+	health_tween.tween_property(health_bar, "value", current_health, 0.5)
 	
 func _handle_death():
 	health_bar.value = 0
@@ -191,13 +192,13 @@ func _handle_death():
 	center_label.text = "YOU DIED"
 	center_label.modulate.a = 0.0
 	
-	if tween and tween.is_running():
-		tween.kill()
+	if center_tween and center_tween.is_running():
+		center_tween.kill()
 	
-	tween = create_tween()
-	tween.tween_property(center_label, "modulate:a", 1.0, 0.5)
-	tween.tween_interval(0.85)                               
-	tween.tween_property(center_label, "modulate:a", 0.0, 0.75)
+	center_tween = create_tween()
+	center_tween.tween_property(center_label, "modulate:a", 1.0, 0.5)
+	center_tween.tween_interval(0.85)                               
+	center_tween.tween_property(center_label, "modulate:a", 0.0, 0.75)
 
 	camera._camera_shake(0.5, 0.05)
 	
@@ -205,7 +206,7 @@ func _handle_death():
 	enemies_remaining_display.visible = false
 	health_bar.visible = false
 	
-	await tween.finished
+	await center_tween.finished
 	_teleport_to_purgatory()
 
 func _teleport_to_purgatory():
@@ -217,19 +218,22 @@ func _teleport_to_purgatory():
 	var purgatory_spawn = purgatory.get_node("PurgatorySpawn")
 	
 	global_position = purgatory_spawn.global_position
-	
+
 	health_component.heal(999)	
 	
 	center_label.text = "PICK AN EFFECT FOR YOUR NEXT RUN"
 	center_label.modulate.a = 0.0
 	
-	if tween and tween.is_running():
-		tween.kill()
+	if center_tween and center_tween.is_running():
+		center_tween.kill()
 	
-	tween = create_tween()
-	tween.tween_property(center_label, "modulate:a", 1.0, 0.5)
-	tween.tween_interval(1)                               
-	tween.tween_property(center_label, "modulate:a", 0.0, 0.5)
+	center_tween = create_tween()
+	center_tween.tween_property(center_label, "modulate:a", 1.0, 0.5)
+	center_tween.tween_interval(1)                               
+	center_tween.tween_property(center_label, "modulate:a", 0.0, 0.5)
 	
 func _damage_effect(_amount):
 	camera._camera_shake(0.2, 0.02)
+
+func handle_win():
+	pass
