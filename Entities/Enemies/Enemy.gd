@@ -8,7 +8,10 @@ const SEPARATION_RADIUS = 2.5
 const SEPARATION_STRENGTH = 3
 
 const SHOOTING_RANGE = 10
-const SHOOT_COOLDOWN = 0.75
+const SHOOT_COOLDOWN = 0.85
+
+const BOB_SPEED = 10.0
+const BOB_HEIGHT = 1
 
 @onready var health_component = $HealthComponent
 @onready var nav_agent = $NavigationAgent3D
@@ -19,6 +22,7 @@ const SHOOT_COOLDOWN = 0.75
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var shoot_timer = 0.0
+var bob_time = 0.0
 
 func _ready():
 	health_component.connect("died", Callable(self, "_on_died"), CONNECT_ONE_SHOT)
@@ -31,10 +35,17 @@ func _ready():
 
 func _process(delta):
 	velocity = Vector3.ZERO
+	
+	# Add bob up and down when moving
+	bob_time += delta * BOB_SPEED
+	
+	var bob_offset = sin(bob_time) * BOB_HEIGHT
+	velocity.y = bob_offset
 		
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
+	# Find nav agents next position
 	var target_pos = player.global_position
 
 	nav_agent.set_target_position(target_pos)
@@ -64,6 +75,7 @@ func _process(delta):
 
 	var distance_to_player = global_position.distance_to(player.global_position)
 
+	# If enemy is within range of the player, stop moving + "jiggle" while shooting at them
 	if distance_to_player < SHOOTING_RANGE:
 		velocity.x = randf_range(-0.1, 0.1)
 		velocity.z = randf_range(-0.1, 0.1)
@@ -72,6 +84,7 @@ func _process(delta):
 			shoot_timer = SHOOT_COOLDOWN
 			shoot_projectile()
 	else:
+#		# Otherwise move towards the player while keeping seperation to other enemies
 		var move_dir = nav_dir * 1.0
 		move_dir += separation * 0.5
 		move_dir += player_separation * 0.7
@@ -108,10 +121,11 @@ func shoot_projectile():
 	var travel_time = to_player.length() / projectile.speed
 	var future_pos = player_pos + player_vel * travel_time
 	
+	# Make aim predictions less accurate
 	var aim_error = Vector3(
-		randf_range(-1.5, 1.5),
+		randf_range(-1, 1),
 		randf_range(-0.5, 0.5), 
-		randf_range(-1.5, 1.5)
+		randf_range(-1, 1)
 	)
 	
 	future_pos += aim_error

@@ -41,10 +41,6 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready():
 	add_to_group("player")
 	
-	print("speed_mult: ", speed_mult)
-	
-	#_teleport_to_purgatory()
-	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	default_weapon_holder_position = weapon_manager.position
 	
@@ -222,6 +218,9 @@ func _handle_death():
 	enemies_remaining_display.visible = false
 	health_bar.visible = false
 	
+	enemies_remaining_display.text = "REMAINING ??"
+	wave_display.text = "WAVE 1"
+	
 	await center_tween.finished
 	_teleport_to_purgatory()
 
@@ -234,6 +233,7 @@ func _teleport_to_purgatory():
 	
 	var purgatory = root.get_node("Purgatory")
 	var purgatory_spawn = purgatory.get_node("PurgatorySpawn")
+	purgatory.visible = true
 	purgatory.randomize_effects()
 		
 	global_position = purgatory_spawn.global_position

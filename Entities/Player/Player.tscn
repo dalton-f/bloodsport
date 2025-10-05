@@ -56,6 +56,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5606173, -0.40005463, -0.97
 weapon_data = ExtResource("3_an6q6")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_ww0jn")]
+natural_regeneration_rate = 3
+regeneration_delay = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
@@ -146,7 +148,7 @@ text = "WAVE 1"
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_font_sizes/font_size = 54
-text = "REMAINING  ?"
+text = "REMAINING ??"
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
 anchors_preset = 3

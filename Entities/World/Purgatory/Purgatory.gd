@@ -17,8 +17,6 @@ func _ready():
 
 func randomize_effects():
 	randomize()
-	
-	print("effects randomised")
 		
 	chosen_pair = EffectsManager.pairs.pick_random()
 	chosen_extreme = EffectsManager.extremes.pick_random()
@@ -42,3 +40,4 @@ func _on_extreme_chosen(body):
 func restart_game():
 	var root = get_tree().current_scene
 	root.restart_game()
+	visible = false

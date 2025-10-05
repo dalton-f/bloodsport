@@ -39,6 +39,9 @@ func handle_win():
 	wave_manager.reset()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)	
 	set_physics_process(false)
+	
+	player.remove_all_effects()
+	
 
 func restart_game():
 	# Reset player health and position
@@ -48,7 +51,6 @@ func restart_game():
 	player.wave_display.visible = true
 	player.enemies_remaining_display.visible = true
 	player.health_bar.visible = true
-
 	
 	# Unpause game
 	win_menu.visible = false

@@ -142,6 +142,36 @@ transform = Transform3D(-1.0927848e-09, 0, 0.025, 0, 0.025, 0, -0.025, 0, -1.092
 [node name="WALL10" parent="SubViewportContainer/SubViewport/World/World/Arena" instance=ExtResource("5_2ip22")]
 transform = Transform3D(3.2783543e-09, 0, -0.025, 0, 0.025, 0, 0.025, 0, 3.2783543e-09, 21.4, 76.75, -14.499999)
 
+[node name="WALL11" parent="SubViewportContainer/SubViewport/World/World/Arena" instance=ExtResource("5_2ip22")]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, 80.26972, 7.25)
+
+[node name="WALL12" parent="SubViewportContainer/SubViewport/World/World/Arena" instance=ExtResource("5_2ip22")]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 14.449999, 80.26972, 7.25)
+
+[node name="WALL13" parent="SubViewportContainer/SubViewport/World/World/Arena" instance=ExtResource("5_2ip22")]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -14.45, 80.26972, 7.25)
+
+[node name="WALL14" parent="SubViewportContainer/SubViewport/World/World/Arena" instance=ExtResource("5_2ip22")]
+transform = Transform3D(-0.025, 0, -2.7939677e-09, 0, 0.024999999, 0, 2.7939677e-09, 0, -0.025, -14.45, 80.26972, -21.4)
+
+[node name="WALL15" parent="SubViewportContainer/SubViewport/World/World/Arena" instance=ExtResource("5_2ip22")]
+transform = Transform3D(-0.025, 0, -2.7939677e-09, 0, 0.024999999, 0, 2.7939677e-09, 0, -0.025, -0.049999617, 80.26972, -21.4)
+
+[node name="WALL16" parent="SubViewportContainer/SubViewport/World/World/Arena" instance=ExtResource("5_2ip22")]
+transform = Transform3D(-0.025, 0, -2.7939677e-09, 0, 0.024999999, 0, 2.7939677e-09, 0, -0.025, 14.35, 80.26972, -21.4)
+
+[node name="WALL17" parent="SubViewportContainer/SubViewport/World/World/Arena" instance=ExtResource("5_2ip22")]
+transform = Transform3D(-1.0927848e-09, 0, 0.025, 0, 0.025, 0, -0.025, 0, -1.0927848e-09, -21.2, 80.26972, -0.05000019)
+
+[node name="WALL18" parent="SubViewportContainer/SubViewport/World/World/Arena" instance=ExtResource("5_2ip22")]
+transform = Transform3D(-1.0927848e-09, 0, -0.025, 0, 0.025, 0, 0.025, 0, -1.0927848e-09, 21.400002, 80.26972, -0.05000019)
+
+[node name="WALL19" parent="SubViewportContainer/SubViewport/World/World/Arena" instance=ExtResource("5_2ip22")]
+transform = Transform3D(-1.0927848e-09, 0, 0.025, 0, 0.025, 0, -0.025, 0, -1.0927848e-09, -21.2, 80.26972, -14.499999)
+
+[node name="WALL20" parent="SubViewportContainer/SubViewport/World/World/Arena" instance=ExtResource("5_2ip22")]
+transform = Transform3D(3.2783543e-09, 0, -0.025, 0, 0.025, 0, 0.025, 0, 3.2783543e-09, 21.4, 80.26972, -14.499999)
+
 [node name="DecorativeProps" type="Node3D" parent="SubViewportContainer/SubViewport/World/World"]
 
 [node name="BARREL3" parent="SubViewportContainer/SubViewport/World/World/DecorativeProps" instance=ExtResource("6_8l2sk")]
@@ -184,7 +214,7 @@ transform = Transform3D(1.2499998, 0, -2.1650634, 0, 2.4999998, 0, 2.1650634, 0,
 transform = Transform3D(-2.5454025, 0, -2.4022753, 0, 3.5, 0, 2.4022753, 0, -2.5454025, -12.170445, 75, -17.593449)
 
 [node name="Crate12" parent="SubViewportContainer/SubViewport/World/World/DecorativeProps" instance=ExtResource("7_af7w7")]
-transform = Transform3D(-0.716604, 0, -2.3950944, 0, 2.5, 0, 2.3950944, 0, -0.716604, -12.269563, 76.52361, -17.848896)
+transform = Transform3D(-0.716604, 0, -2.3950944, 0, 2.5, 0, 2.3950944, 0, -0.716604, -12.269563, 76.457886, -17.848896)
 
 [node name="Crate13" parent="SubViewportContainer/SubViewport/World/World/DecorativeProps" instance=ExtResource("7_af7w7")]
 transform = Transform3D(-0.716604, 0, -2.3950944, 0, 2.5, 0, 2.3950944, 0, -0.716604, -10.269563, 74.52361, -18.95792)

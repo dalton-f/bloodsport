@@ -47,6 +47,7 @@ albedo_color = Color(1.5645177, 0, 2.137311, 1)
 material = SubResource("StandardMaterial3D_rcnd0")
 
 [node name="Purgatory" type="Node3D"]
+visible = false
 script = ExtResource("1_jj272")
 
 [node name="PurgatorySpawn" type="Marker3D" parent="."]
