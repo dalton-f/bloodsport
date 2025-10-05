@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1g1tadofu378"]
+[gd_scene load_steps=8 format=3 uid="uid://c1g1tadofu378"]
 
 [ext_resource type="Script" uid="uid://cqcfy138yk2cq" path="res://Entities/UI/PauseMenu/PauseMenu.gd" id="1_kebc1"]
 
@@ -47,6 +47,8 @@ expand_margin_top = 8.0
 expand_margin_right = 32.0
 expand_margin_bottom = 8.0
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kebc1"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yxilq"]
 bg_color = Color(0.15294118, 0.15294118, 0.15294118, 1)
 border_width_left = 4
@@ -61,6 +63,8 @@ expand_margin_left = 32.0
 expand_margin_top = 8.0
 expand_margin_right = 32.0
 expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yxilq"]
 
 [node name="PauseMenu" type="Control"]
 visible = false
@@ -108,6 +112,7 @@ theme_override_font_sizes/font_size = 46
 theme_override_styles/normal = SubResource("StyleBoxFlat_tyo7h")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_kebc1")
 theme_override_styles/hover = SubResource("StyleBoxFlat_s7h3x")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kebc1")
 text = "RESUME"
 
 [node name="Quit" type="Button" parent="CenterContainer/VBoxContainer"]
@@ -118,4 +123,5 @@ theme_override_font_sizes/font_size = 46
 theme_override_styles/normal = SubResource("StyleBoxFlat_tyo7h")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_yxilq")
 theme_override_styles/hover = SubResource("StyleBoxFlat_s7h3x")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yxilq")
 text = "QUIT"

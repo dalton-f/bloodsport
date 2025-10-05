@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bekjvdfkibsur"]
+[gd_scene load_steps=11 format=3 uid="uid://bekjvdfkibsur"]
 
 [ext_resource type="Script" uid="uid://dj68o3l51b3vf" path="res://Entities/UI/MainMenu/MainMenu.gd" id="1_6i2oa"]
 [ext_resource type="AudioStream" uid="uid://dcwd4i2na4pia" path="res://Assets/Audio/music_1.mp3" id="2_ix86x"]
@@ -50,6 +50,10 @@ expand_margin_left = 32.0
 expand_margin_top = 8.0
 expand_margin_right = 32.0
 expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f8sv2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_obxf0"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -124,6 +128,7 @@ theme_override_font_sizes/font_size = 46
 theme_override_styles/normal = SubResource("StyleBoxFlat_lc837")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_f8sv2")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6i2oa")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_f8sv2")
 text = "PLAY"
 
 [node name="Quit" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer"]
@@ -134,4 +139,5 @@ theme_override_font_sizes/font_size = 46
 theme_override_styles/normal = SubResource("StyleBoxFlat_lc837")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_6i2oa")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6i2oa")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_obxf0")
 text = "QUIT"
