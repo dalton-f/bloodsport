@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://cyfhijj5hleol"]
+[gd_scene load_steps=12 format=3 uid="uid://cyfhijj5hleol"]
 
 [ext_resource type="Script" uid="uid://cbreicnryvtal" path="res://Entities/Player/Player.gd" id="1_e5kic"]
+[ext_resource type="AudioStream" uid="uid://dvl0dv63e1p6u" path="res://Assets/Audio/damage_sfx.mp3" id="2_hj1c0"]
 [ext_resource type="Script" uid="uid://sltipjauucgo" path="res://Entities/Player/Camera.gd" id="2_t38ms"]
 [ext_resource type="PackedScene" uid="uid://bqu265gwb7udo" path="res://Entities/Components/HealthComponent/HealthComponent.tscn" id="2_ww0jn"]
 [ext_resource type="Resource" uid="uid://casypgalqc6fn" path="res://Entities/Weapons/WeaponTypes/Shotgun/Shotgun.tres" id="3_an6q6"]
@@ -36,6 +37,7 @@ expand_margin_bottom = 3.0
 [node name="Player" type="CharacterBody3D"]
 wall_min_slide_angle = 0.0
 script = ExtResource("1_e5kic")
+damage_sfx = ExtResource("2_hj1c0")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_u36tg")
@@ -124,11 +126,6 @@ theme_override_styles/background = SubResource("StyleBoxFlat_t38ms")
 theme_override_styles/fill = SubResource("StyleBoxFlat_hj1c0")
 value = 50.0
 
-[node name="Label" type="Label" parent="CanvasLayer/UI/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-
 [node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/UI"]
 layout_mode = 1
 anchors_preset = 10
@@ -150,3 +147,24 @@ layout_mode = 2
 size_flags_horizontal = 8
 theme_override_font_sizes/font_size = 54
 text = "REMAINING  ?"
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -439.0
+offset_top = -121.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="ActiveEffect" type="Label" parent="MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 54
+text = "ACTIVE EFFECT: NONE"

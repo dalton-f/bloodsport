@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+@export var damage_sfx = AudioStream
+
 var speed
 var speed_mult = 1
 var default_weapon_holder_position : Vector3
@@ -34,9 +36,12 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var health_bar = $CanvasLayer/UI/MarginContainer/ProgressBar
 @onready var wave_display = $CanvasLayer/UI/MarginContainer2/WaveNum
 @onready var enemies_remaining_display = $CanvasLayer/UI/MarginContainer2/RemainingNum
+@onready var active_effect_display = $MarginContainer2/ActiveEffect
 
 func _ready():
 	add_to_group("player")
+	
+	#_teleport_to_purgatory()
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	default_weapon_holder_position = weapon_manager.position
@@ -142,17 +147,24 @@ func apply_normal_pair(pair):
 	pair["debuff"]["apply"].call(self)
 	
 	active_effects.append(pair)
-
-func remove_normal_pair(pair):
-	if pair in active_effects:
-		pair["buff"]["revert"].call(self)
-		pair["debuff"]["revert"].call(self)
-		
-		active_effects.erase(pair)
+	
+	active_effect_display.text = "ACTIVE EFFECT: " + pair["buff"]["name"] + " / " + pair["debuff"]["name"]
 
 func apply_extreme(effect):
 	effect["apply"].call(self)
 	active_effects.append(effect)
+	
+	print(effect, " has been applied")
+
+func remove_all_effects():
+	for effect in active_effects.duplicate():
+		if "buff" in effect and "debuff" in effect:
+			effect["buff"]["revert"].call(self)
+			effect["debuff"]["revert"].call(self)
+		elif "revert" in effect:
+			effect["revert"].call(self)
+		
+		active_effects.erase(effect)
 
 func set_speed_multiplier(mult):
 	speed_mult = mult
@@ -210,13 +222,16 @@ func _handle_death():
 	_teleport_to_purgatory()
 
 func _teleport_to_purgatory():
+	remove_all_effects()
+	
 	set_physics_process(true)
 		
 	var root = get_parent()
 	
 	var purgatory = root.get_node("Purgatory")
 	var purgatory_spawn = purgatory.get_node("PurgatorySpawn")
-	
+	purgatory.randomize_effects()
+		
 	global_position = purgatory_spawn.global_position
 
 	health_component.heal(999)	
@@ -234,6 +249,7 @@ func _teleport_to_purgatory():
 	
 func _damage_effect(_amount):
 	camera._camera_shake(0.2, 0.02)
+	AudioManager.play_sfx(damage_sfx)
 
 func handle_win():
 	pass
