@@ -1,15 +1,23 @@
-[gd_scene load_steps=13 format=3 uid="uid://bnnvjdj77f0kf"]
+[gd_scene load_steps=16 format=3 uid="uid://bnnvjdj77f0kf"]
 
 [ext_resource type="PackedScene" uid="uid://cv3p78uj4hoxv" path="res://Entities/World/Props/Floors/Floor.tscn" id="1_1d1h6"]
 [ext_resource type="Script" uid="uid://baietqqskxxa5" path="res://Entities/World/Purgatory/Purgatory.gd" id="1_jj272"]
 [ext_resource type="PackedScene" uid="uid://dyyqp3djas8mq" path="res://Entities/World/Purgatory/Misc/SLOTMACHINE.glb" id="2_cjhcl"]
 [ext_resource type="PackedScene" uid="uid://bbr37we454k8i" path="res://Entities/World/Props/Walls/Wall.tscn" id="2_jr6wo"]
 [ext_resource type="PackedScene" uid="uid://1rehllf7d1ca" path="res://Entities/World/Purgatory/Misc/BUTTON.glb" id="5_xipsg"]
+[ext_resource type="PackedScene" uid="uid://nbkf7r0dlpdv" path="res://Entities/World/Props/Crate/Crate.tscn" id="6_grk1j"]
+[ext_resource type="PackedScene" uid="uid://djba3n848epq6" path="res://Entities/World/Props/Barrel/Barrel.tscn" id="7_vlt12"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cjhcl"]
 size = Vector3(3, 3.5, 3)
 
+[sub_resource type="Curve" id="Curve_vlt12"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="CurveTexture" id="CurveTexture_xipsg"]
+curve = SubResource("Curve_vlt12")
 
 [sub_resource type="Curve" id="Curve_xipsg"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -118,3 +126,18 @@ transform = Transform3D(0, 0, 0.024999999, 0, 0.025, 0, -0.024999999, 0, 0, 7, 5
 
 [node name="WALL8" parent="Room" instance=ExtResource("2_jr6wo")]
 transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, 5.5, -6.5)
+
+[node name="Crate5" parent="Room" instance=ExtResource("6_grk1j")]
+transform = Transform3D(1.25, 0, 2.1650634, 0, 2.4999998, 0, -2.1650634, 0, 1.25, -5.1744485, -0.5, 2.7204099)
+
+[node name="Crate8" parent="Room" instance=ExtResource("6_grk1j")]
+transform = Transform3D(1.25, 0, 2.165063, 0, 2.5, 0, -2.165063, 0, 1.25, -3.2709332, 0.7893524, 4.2238846)
+
+[node name="Crate9" parent="Room" instance=ExtResource("6_grk1j")]
+transform = Transform3D(3.0310888, 0, 1.7500001, 0, 3.5, 0, -1.7500001, 0, 3.0310888, -3.3084233, -0.5, 3.9524605)
+
+[node name="BARREL7" parent="Room" instance=ExtResource("7_vlt12")]
+transform = Transform3D(0.056568533, 0, 0.05656855, 0, 0.08, 0, -0.05656855, 0, 0.056568533, 5.353554, 0, -1.853553)
+
+[node name="BARREL8" parent="Room" instance=ExtResource("7_vlt12")]
+transform = Transform3D(1.5632242e-09, -0.020705523, 0.07727407, 0.08, 6.0398317e-09, -2.3975712e-16, -5.83403e-09, 0.07727407, 0.020705523, 4.646446, 0, -1.146447)

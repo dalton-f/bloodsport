@@ -41,6 +41,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready():
 	add_to_group("player")
 	
+	print("speed_mult: ", speed_mult)
+	
 	#_teleport_to_purgatory()
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -154,7 +156,7 @@ func apply_extreme(effect):
 	effect["apply"].call(self)
 	active_effects.append(effect)
 	
-	print(effect, " has been applied")
+	active_effect_display.text = "ACTIVE EFFECT: " + effect["name"]
 
 func remove_all_effects():
 	for effect in active_effects.duplicate():
@@ -165,6 +167,8 @@ func remove_all_effects():
 			effect["revert"].call(self)
 		
 		active_effects.erase(effect)
+		
+	active_effect_display.text = "ACTIVE EFFECTS: NONE"
 
 func set_speed_multiplier(mult):
 	speed_mult = mult
@@ -250,6 +254,3 @@ func _teleport_to_purgatory():
 func _damage_effect(_amount):
 	camera._camera_shake(0.2, 0.02)
 	AudioManager.play_sfx(damage_sfx)
-
-func handle_win():
-	pass

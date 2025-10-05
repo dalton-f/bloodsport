@@ -48,7 +48,7 @@ func _process(delta: float) -> void:
 	if _regeneration_timer <= 0.0:
 		_can_regenerate = true
 		
-func damage(amount: int) -> void:
+func damage(amount: float) -> void:
 	current_health = current_health - amount
 	emit_signal("health_changed", current_health)
 	emit_signal("damage_taken", amount)

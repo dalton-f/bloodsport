@@ -17,6 +17,8 @@ func _ready():
 
 func randomize_effects():
 	randomize()
+	
+	print("effects randomised")
 		
 	chosen_pair = EffectsManager.pairs.pick_random()
 	chosen_extreme = EffectsManager.extremes.pick_random()

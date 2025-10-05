@@ -48,8 +48,7 @@ func restart_game():
 	player.wave_display.visible = true
 	player.enemies_remaining_display.visible = true
 	player.health_bar.visible = true
-	
-	player.remove_all_effects()
+
 	
 	# Unpause game
 	win_menu.visible = false

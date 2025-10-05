@@ -20,6 +20,9 @@ func _ready():
 	camera = get_parent()
 
 func shoot():
+	print("damage_mult", damage_mult)
+	print("range_mult", range_mult)
+	
 	if get_tree().paused:
 		return
 		

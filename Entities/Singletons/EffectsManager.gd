@@ -17,7 +17,7 @@ var pairs = [
 	},
 	
 	{
-		"buff": {"name": "QUICK ATTACKER", "apply": func(p): p.weapon_manager.set_attack_speed_mult(2), "revert": func(p): p.weapon_manager.set_attack_speed_mult(1)},
+		"buff": {"name": "QUICK ATTACKS", "apply": func(p): p.weapon_manager.set_attack_speed_mult(2), "revert": func(p): p.weapon_manager.set_attack_speed_mult(1)},
 		"debuff": {"name": "CLOSE RANGE ONLY", "apply": func(p): p.weapon_manager.set_range_mult(0.5), "revert": func(p): p.weapon_manager.set_range_mult(1)},
 	},
 	
