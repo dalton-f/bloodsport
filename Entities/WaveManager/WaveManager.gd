@@ -11,22 +11,26 @@ var waves = [
 			{"scene": preload("res://Entities/Enemies/Enemy.tscn"), "count": 3},
 		],
 	},
-	{
-		"enemies": [
-			{"scene": preload("res://Entities/Enemies/Enemy.tscn"), "count": 5},
-		],
-	},
-		{
-		"enemies": [
-			{"scene": preload("res://Entities/Enemies/Enemy.tscn"), "count": 7},
-		],
-	},
-		{
-		"enemies": [
-			{"scene": preload("res://Entities/Enemies/Enemy.tscn"), "count": 10},
-		],
-	}
-	
+	#{
+		#"enemies": [
+			#{"scene": preload("res://Entities/Enemies/Enemy.tscn"), "count": 5},
+		#],
+	#},
+		#{
+		#"enemies": [
+			#{"scene": preload("res://Entities/Enemies/Enemy.tscn"), "count": 7},
+		#],
+	#},
+		#{
+		#"enemies": [
+			#{"scene": preload("res://Entities/Enemies/Enemy.tscn"), "count": 7},
+		#],
+	#},
+			#{
+		#"enemies": [
+			#{"scene": preload("res://Entities/Enemies/Enemy.tscn"), "count": 7},
+		#],
+	#}
 ]
 
 var current_wave := 0
@@ -83,6 +87,13 @@ func spawn_enemy(enemy_scene: PackedScene):
 
 	enemies_alive += 1
 	enemy.health_component.connect("died", Callable(self, "_on_enemy_died"), CONNECT_ONE_SHOT)
+
+	# Temporarily disable the enemy’s collision shape when spawning
+	enemy.collision_layer = 0
+	enemy.collision_mask = 0
+	await get_tree().create_timer(0.2).timeout
+	enemy.collision_layer = 1
+	enemy.collision_mask = 1
 
 	AudioManager.play_sfx(spawn_sfx)
 	
