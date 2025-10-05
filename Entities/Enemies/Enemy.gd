@@ -7,7 +7,7 @@ const SPEED = 2
 const SEPARATION_RADIUS = 2.5
 const SEPARATION_STRENGTH = 3
 
-const SHOOTING_RANGE = 7.5
+const SHOOTING_RANGE = 10
 const SHOOT_COOLDOWN = 0.75
 
 @onready var health_component = $HealthComponent
@@ -100,7 +100,23 @@ func shoot_projectile():
 	var spawn_position = global_transform.origin + Vector3.UP * 0.5
 	projectile.global_transform.origin = spawn_position
 
-	var direction = (player.global_transform.origin - global_transform.origin).normalized()
+	var player_pos = player.global_transform.origin
+	var player_vel = player.velocity
+	
+	# Predict player position
+	var to_player = player_pos - spawn_position
+	var travel_time = to_player.length() / projectile.speed
+	var future_pos = player_pos + player_vel * travel_time
+	
+	var aim_error = Vector3(
+		randf_range(-1.5, 1.5),
+		randf_range(-0.5, 0.5), 
+		randf_range(-1.5, 1.5)
+	)
+	
+	future_pos += aim_error
+
+	var direction = (future_pos - spawn_position).normalized()
 	projectile.velocity = direction * projectile.speed
 
 func _on_damage_taken(amount: float) -> void:
