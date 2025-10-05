@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://jyw067d6b7a1"]
+[gd_scene load_steps=22 format=3 uid="uid://jyw067d6b7a1"]
 
 [ext_resource type="PackedScene" uid="uid://cyfhijj5hleol" path="res://Entities/Player/Player.tscn" id="1_8rr0o"]
 [ext_resource type="Shader" uid="uid://dfwsqetosfke7" path="res://Entities/World/World.gdshader" id="1_n0y24"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bo7hr3b5sv0ma" path="res://Entities/World/Props/Meatlumps/MeatlumpC.tscn" id="10_f0iu4"]
 [ext_resource type="AudioStream" uid="uid://dk4y720umesna" path="res://Assets/Audio/monster_spawn.mp3" id="12_f0iu4"]
 [ext_resource type="PackedScene" uid="uid://c1g1tadofu378" path="res://Entities/UI/PauseMenu/PauseMenu.tscn" id="14_s7h3x"]
+[ext_resource type="PackedScene" uid="uid://cyhe3fspg3m0f" path="res://Entities/UI/WinMenu/WinMenu.tscn" id="15_t6mjc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n7sqv"]
 shader = ExtResource("1_n0y24")
@@ -32,8 +33,9 @@ sky_material = SubResource("PanoramaSkyMaterial_kj8q6")
 [sub_resource type="Environment" id="Environment_1j0jg"]
 background_mode = 2
 sky = SubResource("Sky_8rr0o")
-tonemap_mode = 2
 glow_enabled = true
+fog_density = 0.05
+fog_sky_affect = 0.2
 volumetric_fog_density = 0.02
 adjustment_enabled = true
 
@@ -77,6 +79,7 @@ light_specular = 2.7
 shadow_enabled = true
 
 [node name="Player" parent="SubViewportContainer/SubViewport/World" instance=ExtResource("1_8rr0o")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 0, 0, 0)
 
 [node name="World" type="NavigationRegion3D" parent="SubViewportContainer/SubViewport/World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -76.4, 9)
@@ -230,7 +233,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, -1.618, 4.1000004)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.6, -1.618, -3)
 
 [node name="SpawnC" type="Marker3D" parent="SubViewportContainer/SubViewport/World"]
-transform = Transform3D(1, 0, 0, 0, 0.92263234, -0.38568062, 0, 0.38568062, 0.92263234, 3.1999998, -1.6182013, 11.099999)
+transform = Transform3D(1, 0, 0, 0, 0.92263234, -0.38568062, 0, 0.38568062, 0.92263234, 14.2, -1.6182013, -6.9000006)
 
 [node name="SpawnD" type="Marker3D" parent="SubViewportContainer/SubViewport/World"]
 transform = Transform3D(1, 0, 0, 0, 0.92263234, -0.38568062, 0, 0.38568062, 0.92263234, -9.8, -1.6182013, 6.0999994)
@@ -238,5 +241,7 @@ transform = Transform3D(1, 0, 0, 0, 0.92263234, -0.38568062, 0, 0.38568062, 0.92
 [node name="PlayerSpawn" type="Marker3D" parent="SubViewportContainer/SubViewport/World"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="WinMenu" parent="CanvasLayer" instance=ExtResource("15_t6mjc")]
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("14_s7h3x")]

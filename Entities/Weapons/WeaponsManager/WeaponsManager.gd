@@ -6,6 +6,7 @@ extends Node3D
 var camera
 var damage_mult = 1
 var range_mult = 1
+var attack_speed_mult = 1
 
 var current_weapon: Node3D
 var can_shoot: bool = true
@@ -40,7 +41,7 @@ func shoot():
 		direction = direction.normalized()
 		
 		# Project a ray normal from the center of the screen up to a distance of 100
-		var end = origin + direction * (weapon_data.range * range_mult)
+		var end = origin + direction * (weapon_data.weapon_range * range_mult)
 	
 		var query = PhysicsRayQueryParameters3D.create(origin, end)
 		query.collide_with_bodies = true
@@ -57,7 +58,7 @@ func shoot():
 	
 	camera._camera_shake(0.2, 0.025)
 	
-	var cooldown = 1.0 / float(weapon_data.fire_rate)
+	var cooldown = 1.0 / (float(weapon_data.fire_rate) * attack_speed_mult)
 	await get_tree().create_timer(cooldown).timeout
 	can_shoot = true
 
