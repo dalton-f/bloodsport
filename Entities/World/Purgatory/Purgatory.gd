@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var pair_display = $Pair
+@onready var pair_display = $Pair/PairLabel
 @onready var extreme_display = $Extreme
 
 func _ready():
@@ -11,3 +11,8 @@ func _ready():
 	
 	pair_display.text = chosen_pair["buff"]["name"] + " / " +  chosen_pair["debuff"]["name"]
 	extreme_display.text = chosen_extreme["name"]
+
+	
+func restart_game():
+	var root = get_tree().current_scene
+	root.restart_game()
