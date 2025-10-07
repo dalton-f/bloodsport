@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cyhe3fspg3m0f"]
+[gd_scene load_steps=9 format=3 uid="uid://cyhe3fspg3m0f"]
 
 [ext_resource type="Script" uid="uid://sdqy58mcmvgp" path="res://Entities/UI/WinMenu/WinMenu.gd" id="1_45mho"]
+[ext_resource type="Texture2D" uid="uid://jw3oavcmm517" path="res://Assets/Textures/trophy.png" id="2_i3w8l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vxls5"]
 bg_color = Color(0, 0, 0, 1)
@@ -83,7 +84,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.22745098, 0.22745098, 0.22745098, 0.7254902)
+color = Color(0.34117648, 0, 0, 0.7254902)
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -92,10 +93,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -91.0
-offset_top = -88.0
-offset_right = 91.0
-offset_bottom = 88.0
+offset_left = -514.0
+offset_top = -378.0
+offset_right = 514.0
+offset_bottom = 378.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -103,10 +104,15 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_constants/separation = 64
 
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("2_i3w8l")
+
 [node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 150
-text = "YOU WON!"
+text = "UNSTOPPABLE!"
 fit_content = true
 autowrap_mode = 0
 
